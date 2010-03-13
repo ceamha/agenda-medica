@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Agenda Medica</string>
+    <string name="hello">¡Bienvenido a su Agenda Medica!</string>
+    <string name="m_clientes">Clientes</string>
+    <string name="m_citas">Citas</string>
+    <string name="m_horario">Horario Medico </string>
+    <string name="m_consultas">Consultas</string>
+    <string name="m_estadisticas">Estadisticas</string>
+    <string name="salir">Salir</string>
+    
+</resources>
