@@ -2,8 +2,8 @@ package ceamha.casidiablo.agendamedica.almacenamiento;
 
 import java.util.Vector;
 
-import ceamha.casidiablo.esqueleto.Cita;
-import ceamha.casidiablo.esqueleto.Paciente;
+import ceamha.casidiablo.agendamedica.esqueleto.Cita;
+import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 
 public interface Almacenador {
 	/**
@@ -19,6 +19,13 @@ public interface Almacenador {
 	 * @return Persona o null si no existe
 	 */
 	public Paciente obtenerPersona(int _id);
+	
+	/**
+	 * Dado un ID retorna un objeto que hace referencia a la persona
+	 * @param _id
+	 * @return Persona o null si no existe
+	 */
+	public Vector<Paciente> obtenerPacientes();
 	
 	/**
 	 * Inactiva un paciente
