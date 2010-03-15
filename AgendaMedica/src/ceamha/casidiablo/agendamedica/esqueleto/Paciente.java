@@ -9,6 +9,7 @@ public class Paciente {
 	private String direccion;
 	private String correo;
 	private String fechaNacimiento;
+	private boolean estado;
 	/**
 	 * @return the _id
 	 */
@@ -105,5 +106,16 @@ public class Paciente {
 	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+	/**
+	 * @return the estado
+	 */
+	public boolean isEstado() {
+		return estado;
+	}	
 }

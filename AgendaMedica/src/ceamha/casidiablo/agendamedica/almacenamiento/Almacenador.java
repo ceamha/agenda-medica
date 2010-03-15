@@ -11,7 +11,7 @@ public interface Almacenador {
 	 * @param paciente
 	 * @return retorna el ID del registro almacenado
 	 */
-	public int almacenarPaciente(Paciente paciente);
+	public long almacenarPaciente(Paciente paciente);
 	
 	/**
 	 * Dado un ID retorna un objeto que hace referencia a la persona
@@ -39,7 +39,7 @@ public interface Almacenador {
 	 * @param cita
 	 * @return retorna el ID del registro almacenado
 	 */
-	public int almacenarCita(Cita cita);
+	public long almacenarCita(Cita cita);
 	
 	/**
 	 * Dado un ID retorna la cita correspondiente
@@ -59,5 +59,5 @@ public interface Almacenador {
 	 * @return
 	 */
 	public Vector<Cita> obtenerCitas(String desde, String hasta);
-	
+
 }

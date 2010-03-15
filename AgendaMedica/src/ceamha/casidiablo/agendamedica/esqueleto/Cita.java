@@ -9,6 +9,7 @@ public class Cita {
 	private int idPaciente;
 	private String horaInicio;
 	private String horaFin;
+	private boolean estado;
 
 	/**
 	 * @return the _id
@@ -105,5 +106,17 @@ public class Cita {
 	 */
 	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
+	}
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+	/**
+	 * @return the estado
+	 */
+	public boolean isEstado() {
+		return estado;
 	}
 }
