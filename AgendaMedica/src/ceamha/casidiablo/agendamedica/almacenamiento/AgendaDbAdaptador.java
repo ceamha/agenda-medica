@@ -166,8 +166,15 @@ public class AgendaDbAdaptador implements Almacenador {
 
 	@Override
 	public Vector<Cita> obtenerCitas(String desde, String hasta) {
-		// TODO Auto-generated method stub
-		return null;
+		Cursor cursor = baseDatos.query("cita", new String[] { "_id", "fecha", "horaProgramadaInicio",
+				"horaProgramadaFin", "observaciones", "idPaciente", "horaInicio",
+				"horaFin", "estado" },
+				"fechaProgramadaFin >= " + desde + " AND fechaProgramadaFin <= " + hasta,
+				null, null, null, null);
+		Vector<Cita> citas = new Vector<Cita>();
+		while(cursor != null && cursor.moveToNext())
+			citas.add(crearCita(cursor));
+		return citas;
 	}
 
 	@Override
