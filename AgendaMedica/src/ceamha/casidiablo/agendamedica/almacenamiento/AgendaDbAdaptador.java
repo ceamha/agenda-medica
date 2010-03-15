@@ -19,10 +19,6 @@ import android.util.Log;
  */
 public class AgendaDbAdaptador implements Almacenador {
 
-	public static final String KEY_TITLE = "title";
-	public static final String KEY_BODY = "body";
-	public static final String KEY_ROWID = "_id";
-
 	private static final String TAG = "AgendaDbAdaptador";
 	private DatabaseHelper facilitadorBD;
 	private SQLiteDatabase baseDatos;
@@ -101,135 +97,71 @@ public class AgendaDbAdaptador implements Almacenador {
 		facilitadorBD.close();
 	}
 
-	/**
-	 * Create a new note using the title and body provided. If the note is
-	 * successfully created return the new rowId for that note, otherwise return
-	 * a -1 to indicate failure.
-	 * 
-	 * @param title
-	 *            the title of the note
-	 * @param body
-	 *            the body of the note
-	 * @return rowId or -1 if failed
-	 */
-	public long createNote(String title, String body) {
-		ContentValues initialValues = new ContentValues();
-		initialValues.put(KEY_TITLE, title);
-		initialValues.put(KEY_BODY, body);
-
-		return baseDatos.insert("paciente", null, initialValues);
-	}
-
-	/**
-	 * Delete the note with the given rowId
-	 * 
-	 * @param rowId
-	 *            id of note to delete
-	 * @return true if deleted, false otherwise
-	 */
-	public boolean deleteNote(long rowId) {
-
-		return baseDatos.delete("paciente", KEY_ROWID + "=" + rowId, null) > 0;
-	}
-
-	/**
-	 * Return a Cursor over the list of all notes in the database
-	 * 
-	 * @return Cursor over all notes
-	 */
-	public Cursor fetchAllNotes() {
-
-		return baseDatos.query("paciente", new String[] { KEY_ROWID, KEY_TITLE,
-				KEY_BODY }, null, null, null, null, null);
-	}
-
-	/**
-	 * Return a Cursor positioned at the note that matches the given rowId
-	 * 
-	 * @param rowId
-	 *            id of note to retrieve
-	 * @return Cursor positioned to matching note, if found
-	 * @throws SQLException
-	 *             if note could not be found/retrieved
-	 */
-	public Cursor fetchNote(long rowId) throws SQLException {
-
-		Cursor mCursor =
-
-		baseDatos.query(true, "paciente", new String[] { KEY_ROWID, KEY_TITLE,
-				KEY_BODY }, KEY_ROWID + "=" + rowId, null, null, null, null,
-				null);
-		if (mCursor != null) {
-			mCursor.moveToFirst();
-		}
-		return mCursor;
-
-	}
-
-	/**
-	 * Update the note using the details provided. The note to be updated is
-	 * specified using the rowId, and it is altered to use the title and body
-	 * values passed in
-	 * 
-	 * @param rowId
-	 *            id of note to update
-	 * @param title
-	 *            value to set note title to
-	 * @param body
-	 *            value to set note body to
-	 * @return true if the note was successfully updated, false otherwise
-	 */
-	public boolean updateNote(long rowId, String title, String body) {
-		ContentValues args = new ContentValues();
-		args.put(KEY_TITLE, title);
-		args.put(KEY_BODY, body);
-
-		return baseDatos.update("paciente", args, KEY_ROWID + "=" + rowId, null) > 0;
-	}
-
 	@Override
 	public long almacenarCita(Cita cita) {
-		ContentValues valoresCita = new ContentValues();
-		valoresCita.put("fecha", cita.getFecha());
-		valoresCita.put("horaProgramadaInicio", cita.getHoraProgramadaInicio());
-		valoresCita.put("horaProgramadaFin", cita.getHoraProgramadaFin());
-		valoresCita.put("observaciones", cita.getObservaciones());
-		valoresCita.put("idPaciente", cita.getIdPaciente());
-		valoresCita.put("horaInicio", cita.getHoraInicio());
-		valoresCita.put("horaFin", cita.getHoraFin());
-		return baseDatos.insert("cita", null, valoresCita);
+		//datos a almacenar
+		ContentValues valoresCita = obtenerValoresCita(cita);
+		
+		//consultar si ya existe la cita
+		Cursor mCursor = baseDatos.query(true, "cita",
+				new String[] { "_id" },
+				" _id =" + cita.get_id(),
+				null, null, null, null, null);
+		//si es null, entonces la cita no existe, y por ende se debe crear
+		if (mCursor == null)
+			return baseDatos.insert("cita", null, valoresCita);
+		//actualizarla
+		else if (baseDatos.update("cita", valoresCita, " _id =" + cita.get_id(), null) > 0)
+				return cita.get_id();
+		else
+			return -1;
 	}
 
 	@Override
 	public long almacenarPaciente(Paciente paciente) {
-		ContentValues valoresPaciente = new ContentValues();
-		valoresPaciente.put("nombres", paciente.getNombres());
-		valoresPaciente.put("apellidos", paciente.getApellidos());
-		valoresPaciente.put("documento", paciente.getDocumento());
-		valoresPaciente.put("telefono", paciente.getDocumento());
-		valoresPaciente.put("direccion", paciente.getDireccion());
-		valoresPaciente.put("correo", paciente.getCorreo());
-		return baseDatos.insert("paciente", null, valoresPaciente);
+		//datos a almacenar
+		ContentValues valoresPaciente = obtenerValoresPaciente(paciente);
+		//consultar si ya existe el paciente
+		Cursor mCursor = baseDatos.query(true, "paciente",
+				new String[] { "_id" },
+				" _id =" + paciente.get_id(),
+				null, null, null, null, null);
+		//si es null, entonces el paciente no existe, y por ende se debe crear
+		if (mCursor == null)
+			return baseDatos.insert("paciente", null, valoresPaciente);
+		//actualizar
+		else if (baseDatos.update("paciente", valoresPaciente, " _id = " + paciente.get_id(), null) > 0)
+				return paciente.get_id();
+		else
+			return -1;
+		
 	}
 
 	@Override
-	public void inactivarPaciente(Paciente paciente) {
-		/*ContentValues args = new ContentValues();
-		args.put(KEY_TITLE, title);
-		args.put(KEY_BODY, body);
-		return baseDatos.update("paciente", args, KEY_ROWID + "=" + rowId, null) > 0;*/
+	public boolean inactivarPaciente(Paciente paciente) {
+		ContentValues valoresPaciente = obtenerValoresPaciente(paciente);
+		return baseDatos.update("paciente", valoresPaciente, " _id =" + paciente.get_id(), null) > 0;
 	}
 
 	@Override
-	public int obtenerCita(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Cita obtenerCita(int id) {
+		Cursor mCursor = baseDatos.query(true, "cita", new String[] { "_id" },
+				" _id = " + id, null, null, null, null, null);
+		if (mCursor != null)
+			mCursor.moveToFirst();
+		
+		return crearCita(mCursor);
 	}
 
 	@Override
 	public Vector<Cita> obtenerCitas() {
-		// TODO Auto-generated method stub
-		return null;
+		Cursor cursor = baseDatos.query("cita", new String[] { "_id", "fecha", "horaProgramadaInicio",
+			"horaProgramadaFin", "observaciones", "idPaciente", "horaInicio",
+			"horaFin", "estado" }, null, null, null, null, null);
+		Vector<Cita> citas = new Vector<Cita>();
+		while(cursor != null && cursor.moveToNext())
+			citas.add(crearCita(cursor));
+		return citas;
 	}
 
 	@Override
@@ -245,8 +177,48 @@ public class AgendaDbAdaptador implements Almacenador {
 	}
 
 	@Override
-	public Paciente obtenerPersona(int id) {
+	public Paciente obtenerPaciente(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private ContentValues obtenerValoresPaciente(Paciente paciente) {
+		ContentValues valoresPaciente = new ContentValues();
+		valoresPaciente.put("nombres", paciente.getNombres());
+		valoresPaciente.put("apellidos", paciente.getApellidos());
+		valoresPaciente.put("documento", paciente.getDocumento());
+		valoresPaciente.put("telefono", paciente.getDocumento());
+		valoresPaciente.put("direccion", paciente.getDireccion());
+		valoresPaciente.put("correo", paciente.getCorreo());
+		valoresPaciente.put("fechaNacimiento", paciente.getFechaNacimiento());
+		valoresPaciente.put("estado", paciente.isActivo());
+		return valoresPaciente; 
+	}
+	
+	private ContentValues obtenerValoresCita(Cita cita) {
+		ContentValues valoresCita = new ContentValues();
+		valoresCita.put("fecha", cita.getFecha());
+		valoresCita.put("horaProgramadaInicio", cita.getHoraProgramadaInicio());
+		valoresCita.put("horaProgramadaFin", cita.getHoraProgramadaFin());
+		valoresCita.put("observaciones", cita.getObservaciones());
+		valoresCita.put("idPaciente", cita.getIdPaciente());
+		valoresCita.put("horaInicio", cita.getHoraInicio());
+		valoresCita.put("horaFin", cita.getHoraFin());
+		valoresCita.put("estado", cita.isEstado());
+		return valoresCita; 
+	}
+	
+	private Cita crearCita(Cursor mCursor) {
+		Cita cita = new Cita();
+		cita.set_id(mCursor.getInt(mCursor.getColumnIndex("_id")));
+		cita.setFecha(mCursor.getString(mCursor.getColumnIndex("fecha")));
+		cita.setHoraProgramadaInicio(mCursor.getString(mCursor.getColumnIndex("horaProgramadaInicio")));
+		cita.setHoraProgramadaFin(mCursor.getString(mCursor.getColumnIndex("horaProgramadaFin")));
+		cita.setObservaciones(mCursor.getString(mCursor.getColumnIndex("observaciones")));
+		cita.setIdPaciente(mCursor.getInt(mCursor.getColumnIndex("idPaciente")));
+		cita.setHoraInicio(mCursor.getString(mCursor.getColumnIndex("horaInicio")));
+		cita.setHoraFin(mCursor.getString(mCursor.getColumnIndex("horaFin")));
+		cita.setEstado(mCursor.getInt(mCursor.getColumnIndex("horaFin")) == 1);
+		return cita;
 	}
 }

@@ -9,7 +9,7 @@ public class Paciente {
 	private String direccion;
 	private String correo;
 	private String fechaNacimiento;
-	private boolean estado;
+	private boolean activo;
 	/**
 	 * @return the _id
 	 */
@@ -107,15 +107,15 @@ public class Paciente {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	/**
-	 * @param estado the estado to set
+	 * @param activo the activo to set
 	 */
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	/**
-	 * @return the estado
+	 * @return the activo
 	 */
-	public boolean isEstado() {
-		return estado;
-	}	
+	public boolean isActivo() {
+		return activo;
+	}
 }

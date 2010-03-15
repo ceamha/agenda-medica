@@ -18,7 +18,7 @@ public interface Almacenador {
 	 * @param _id
 	 * @return Persona o null si no existe
 	 */
-	public Paciente obtenerPersona(int _id);
+	public Paciente obtenerPaciente(int _id);
 	
 	/**
 	 * Dado un ID retorna un objeto que hace referencia a la persona
@@ -32,7 +32,7 @@ public interface Almacenador {
 	 * @param paciente
 	 * @return
 	 */
-	public void inactivarPaciente(Paciente paciente);
+	public boolean inactivarPaciente(Paciente paciente);
 	
 	/**
 	 * Almacena o actualiza una cita
@@ -46,7 +46,7 @@ public interface Almacenador {
 	 * @param cita
 	 * @return retorna el ID del registro almacenado
 	 */
-	public int obtenerCita(int _id);
+	public Cita obtenerCita(int _id);
 	
 	/**
 	 * Devuelve un Vector con todas las citas
