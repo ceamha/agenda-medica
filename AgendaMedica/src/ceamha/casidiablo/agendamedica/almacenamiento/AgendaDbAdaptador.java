@@ -179,16 +179,33 @@ public class AgendaDbAdaptador implements Almacenador {
 
 	@Override
 	public Vector<Paciente> obtenerPacientes() {
-		// TODO Auto-generated method stub
-		return null;
+		Cursor cursor = baseDatos.query("paciente", new String[] { "_id",
+				"nombres", "apellidos", "documento", "telefono",
+				"direccion", "correo", "fechaNacimiento", "estado"},
+				null, null, null, null, null);
+		Vector<Paciente> pacientes = new Vector<Paciente>();
+		while(cursor != null && cursor.moveToNext())
+			pacientes.add(crearPaciente(cursor));
+		return pacientes;
 	}
 
 	@Override
 	public Paciente obtenerPaciente(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Cursor cursor = baseDatos.query("table", new String[] { "_id",
+				"nombres", "apellidos", "documento", "telefono",
+				"direccion", "correo", "fechaNacimiento", "estado"},
+				"_id = " + id, null, null, null, null);
+		if(cursor != null)
+			cursor.moveToFirst();
+		return crearPaciente(cursor);
 	}
 	
+	/**
+	 * Devuelve un objeto tipo ContentValues con los valores
+	 * que debe tener la tabla de paciente 
+	 * @param paciente
+	 * @return
+	 */
 	private ContentValues obtenerValoresPaciente(Paciente paciente) {
 		ContentValues valoresPaciente = new ContentValues();
 		valoresPaciente.put("nombres", paciente.getNombres());
@@ -202,6 +219,12 @@ public class AgendaDbAdaptador implements Almacenador {
 		return valoresPaciente; 
 	}
 	
+	/**
+	 * Devuelve un objeto tipo ContentValues con los valores
+	 * que debe tener la tabla de cita
+	 * @param cita
+	 * @return
+	 */
 	private ContentValues obtenerValoresCita(Cita cita) {
 		ContentValues valoresCita = new ContentValues();
 		valoresCita.put("fecha", cita.getFecha());
@@ -215,17 +238,41 @@ public class AgendaDbAdaptador implements Almacenador {
 		return valoresCita; 
 	}
 	
-	private Cita crearCita(Cursor mCursor) {
+	/**
+	 * A partir de un cursor, crea y devuelve un objeto tipo Cita
+	 * @param cursor
+	 * @return
+	 */
+	private Cita crearCita(Cursor cursor) {
 		Cita cita = new Cita();
-		cita.set_id(mCursor.getInt(mCursor.getColumnIndex("_id")));
-		cita.setFecha(mCursor.getString(mCursor.getColumnIndex("fecha")));
-		cita.setHoraProgramadaInicio(mCursor.getString(mCursor.getColumnIndex("horaProgramadaInicio")));
-		cita.setHoraProgramadaFin(mCursor.getString(mCursor.getColumnIndex("horaProgramadaFin")));
-		cita.setObservaciones(mCursor.getString(mCursor.getColumnIndex("observaciones")));
-		cita.setIdPaciente(mCursor.getInt(mCursor.getColumnIndex("idPaciente")));
-		cita.setHoraInicio(mCursor.getString(mCursor.getColumnIndex("horaInicio")));
-		cita.setHoraFin(mCursor.getString(mCursor.getColumnIndex("horaFin")));
-		cita.setEstado(mCursor.getInt(mCursor.getColumnIndex("horaFin")) == 1);
+		cita.set_id(cursor.getInt(cursor.getColumnIndex("_id")));
+		cita.setFecha(cursor.getString(cursor.getColumnIndex("fecha")));
+		cita.setHoraProgramadaInicio(cursor.getString(cursor.getColumnIndex("horaProgramadaInicio")));
+		cita.setHoraProgramadaFin(cursor.getString(cursor.getColumnIndex("horaProgramadaFin")));
+		cita.setObservaciones(cursor.getString(cursor.getColumnIndex("observaciones")));
+		cita.setIdPaciente(cursor.getInt(cursor.getColumnIndex("idPaciente")));
+		cita.setHoraInicio(cursor.getString(cursor.getColumnIndex("horaInicio")));
+		cita.setHoraFin(cursor.getString(cursor.getColumnIndex("horaFin")));
+		cita.setEstado(cursor.getInt(cursor.getColumnIndex("horaFin")) == 1);
 		return cita;
+	}
+	
+	/**
+	 * A partir de un cursor, crea y devuelve un objeto tipo Paciente
+	 * @param cursor
+	 * @return
+	 */
+	private Paciente crearPaciente(Cursor cursor) {
+		Paciente paciente = new Paciente();
+		paciente.set_id(cursor.getInt(cursor.getColumnIndex("_id")));
+		paciente.setNombres(cursor.getString(cursor.getColumnIndex("nombres")));
+		paciente.setApellidos(cursor.getString(cursor.getColumnIndex("apellidos")));
+		paciente.setDocumento(Long.parseLong(cursor.getString(cursor.getColumnIndex("documento"))));
+		paciente.setTelefono(cursor.getString(cursor.getColumnIndex("telefono")));
+		paciente.setDireccion(cursor.getString(cursor.getColumnIndex("direccion")));
+		paciente.setCorreo(cursor.getString(cursor.getColumnIndex("correo")));
+		paciente.setFechaNacimiento(cursor.getString(cursor.getColumnIndex("fechaNacimiento")));
+		paciente.setActivo(cursor.getInt(cursor.getColumnIndex("estado")) == 1);
+		return paciente;
 	}
 }
