@@ -19,22 +19,28 @@ public final class R {
         public static final int exit2=0x7f020005;
         public static final int horario=0x7f020006;
         public static final int icon=0x7f020007;
-        public static final int nuevocliente=0x7f020008;
+        public static final int nuevopaciente=0x7f020008;
         public static final int refrescar=0x7f020009;
         public static final int salir=0x7f02000a;
+    }
+    public static final class id {
+        public static final int nombres=0x7f050000;
     }
     public static final class layout {
         public static final int listas=0x7f030000;
         public static final int main=0x7f030001;
+        public static final int paciente=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int hello=0x7f040001;
+        public static final int m_actualizar_paciente=0x7f040008;
         public static final int m_citas=0x7f040003;
-        public static final int m_clientes=0x7f040002;
         public static final int m_consultas=0x7f040005;
         public static final int m_estadisticas=0x7f040006;
         public static final int m_horario=0x7f040004;
-        public static final int salir=0x7f040007;
+        public static final int m_nuevo_paciente=0x7f040007;
+        public static final int m_pacientes=0x7f040002;
+        public static final int salir=0x7f040009;
     }
 }

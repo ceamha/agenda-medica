@@ -2,11 +2,13 @@
 <resources>
 	<string name="app_name">Agenda Medica</string>
     <string name="hello">¡Bienvenido a su Agenda Medica!</string>
-    <string name="m_clientes">Clientes</string>
+    <string name="m_pacientes">Clientes</string>
     <string name="m_citas">Citas</string>
     <string name="m_horario">Horario Medico </string>
     <string name="m_consultas">Consultas</string>
     <string name="m_estadisticas">Estadisticas</string>
+    <string name="m_nuevo_paciente">Nuevo Paciente</string>
+    <string name="m_actualizar_paciente">Actualizar Paciente</string>
     <string name="salir">Salir</string>
     
 </resources>

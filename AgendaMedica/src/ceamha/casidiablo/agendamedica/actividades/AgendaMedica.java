@@ -1,5 +1,8 @@
 package ceamha.casidiablo.agendamedica.actividades;
 
+import java.util.Calendar;
+import java.util.Vector;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +15,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import ceamha.casidiablo.agendamedica.esqueleto.Cita;
 
 public class AgendaMedica extends ListActivity {
 	
-	static final String[] CITAS = new String[] {"Primera Cita","Segunda Cita","Tercer Cita"};
+	private Vector<Cita> citas;
 	private static final int M_PACIENTES = Menu.FIRST;
 	private static final int M_CITAS = Menu.FIRST + 1;
     private static final int M_HORARIO = Menu.FIRST + 2;
@@ -28,19 +32,15 @@ public class AgendaMedica extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.listas, CITAS));
+	  setListAdapter(new ArrayAdapter<String>(this, R.layout.listas, citasDelDia()));
 
 	  ListView lv = getListView();
 	  lv.setTextFilterEnabled(true);
-
+ 
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 	    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-	      
-	      Toast.makeText(getApplicationContext(), ((TextView) view).getText()+" Hola",
-	          Toast.LENGTH_SHORT).show();
-	    //  Intent intent = new Intent(HelloListView.this, OtraActividad.class);
-	    //  startActivity(intent);
-	      
+	  	  //Datos de la Cita	      
+	      	      
 	    }
 	  });
 	}
@@ -48,7 +48,7 @@ public class AgendaMedica extends ListActivity {
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(Menu.NONE, M_PACIENTES, 0, R.string.m_clientes).setIcon(R.drawable.clientes);
+        menu.add(Menu.NONE, M_PACIENTES, 0, R.string.m_pacientes).setIcon(R.drawable.clientes);
         menu.add(Menu.NONE, M_CITAS, 1, R.string.m_citas).setIcon(R.drawable.citas);
         menu.add(Menu.NONE, M_HORARIO, 2, R.string.m_horario).setIcon(R.drawable.horario);
         menu.add(Menu.NONE, M_CONSULTAS, 3, R.string.m_consultas).setIcon(R.drawable.consultas);
@@ -92,4 +92,17 @@ public class AgendaMedica extends ListActivity {
         setResult(RESULT_OK);
         finish();
     }
+	
+	public String[] citasDelDia(){
+	/*	Calendar c1 = Calendar.getInstance();
+		String dia = Integer.toString(c1.get(Calendar.DATE));
+		String mes = Integer.toString(c1.get(Calendar.MONTH));
+		String annio = Integer.toString(c1.get(Calendar.YEAR));
+	*/	
+		//Se obtienen las citas asignadas para mostrarlas en el Frontend segun el día actual
+		//y se organizan segun la hora
+		
+	 		
+		return new String[] {"Primera Cita","Segunda Cita","Tercer Cita"};
+	}
 }
