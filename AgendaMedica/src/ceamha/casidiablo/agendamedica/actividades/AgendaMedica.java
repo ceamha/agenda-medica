@@ -53,8 +53,7 @@ public class AgendaMedica extends ListActivity {
 	       	      startActivity(intent);
 	               break;
 	           case M_CITAS:
-	        	   intent = new Intent(AgendaMedica.this, MenuCitas.class);
-		       	   startActivity(intent);
+	        	   citasDelDia();
 	               break;
 	           case M_HORARIO:
 	               //f_euros_a_pesetas();
@@ -63,7 +62,8 @@ public class AgendaMedica extends ListActivity {
 	               //f_pesetas_a_euros();
 	               break;
 	           case M_ESTADISTICAS:
-	               //f_euros_a_pesetas();
+	        	   intent = new Intent(AgendaMedica.this, DespliegueEstadisticas.class);
+		       	   startActivity(intent);
 	               break;
 	           case SALIR:
 	               salir();
@@ -86,10 +86,10 @@ public class AgendaMedica extends ListActivity {
 	        
 	        // Crear un array para especificar los campos que queremos 
 			//mostrar en la lista (solo la fecha, de momento)
-	        String[] desde = new String[]{"fecha"};
+	        String[] desde = new String[] {"motivo", "fecha", "horaProgramadaInicio"};
 	        
 	        // Y un array de los campos que queremos enlazar
-	        int[] para = new int[]{R.id.lista};
+	        int[] para = new int[]{R.id.motivo_cita};
 	        
 	        // Now create a simple cursor adapter and set it to display
 	        SimpleCursorAdapter citas = new SimpleCursorAdapter(this, R.layout.lista_citas, cursor, desde, para);

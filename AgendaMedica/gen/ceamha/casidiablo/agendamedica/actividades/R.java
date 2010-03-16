@@ -32,7 +32,7 @@ public final class R {
         public static final int documento_paciente=0x7f050002;
         public static final int fecha_nacimiento_paciente=0x7f050006;
         public static final int guardar_paciente=0x7f050007;
-        public static final int lista=0x7f050009;
+        public static final int motivo_cita=0x7f050009;
         public static final int nombre_paciente=0x7f05000a;
         public static final int nombres_paciente=0x7f050000;
         public static final int telefono_paciente=0x7f050003;

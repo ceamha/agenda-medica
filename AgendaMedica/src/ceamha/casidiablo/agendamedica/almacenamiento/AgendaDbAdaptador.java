@@ -88,8 +88,9 @@ public class AgendaDbAdaptador implements Almacenador {
 			//insertar citas de prueba
 			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
 					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
-					"VALUES ('Chequeo de rutina', '3-16-2010', '13:00:00', '13:30:00'," +
-					"'', 1, '', '', 1);");
+					"VALUES ('Chequeo de rutina', '3-15-2010', '13:00:00', '13:30:00'," +
+					"'Todo parece estar bien con el paciente, aunque debe subir de peso porque se " +
+					"encuentra demasiado flaco', 1, '13:00:00', '13:20:00', 1);");
 			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
 					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
 					"VALUES ('Jaqueca', '3-18-2010', '13:00:00', '13:30:00'," +
@@ -101,7 +102,7 @@ public class AgendaDbAdaptador implements Almacenador {
 			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
 					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
 					"VALUES ('Mareo', '3-17-2010', '8:30:00', '9:00:00'," +
-					"'', 3, '', '', 1);");
+					"'', 3, '', '', 0);");
 			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
 					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
 					"VALUES ('Calculos Renales', '3-17-2010', '9:30:00', '10:00:00'," +
