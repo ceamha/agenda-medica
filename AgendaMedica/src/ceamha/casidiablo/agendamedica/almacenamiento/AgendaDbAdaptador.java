@@ -43,6 +43,7 @@ public class AgendaDbAdaptador implements Almacenador {
 							+ "fechaNacimiento date,"
 							+ "estado bool);");
 			db.execSQL("create table cita (_id integer primary key autoincrement, "
+							+ "motivo text not null,"
 							+ "fecha date not null,"
 							+ "horaProgramadaInicio time not null,"
 							+ "horaProgramadaFin time not null,"
@@ -51,6 +52,68 @@ public class AgendaDbAdaptador implements Almacenador {
 							+ "horaInicio time,"
 							+ "horaFin time,"
 							+ "estado bool);");
+			//crear datos de ejemplo
+			db.execSQL("INSERT INTO paciente (nombres, apellidos, documento, telefono, " +
+					"direccion, correo, fechaNacimiento, estado) " +
+					"VALUES ('Cristian Camilo', 'Castiblanco Hernandez', '1032421210'," +
+					"'7253464', 'Cra 18 # 27d - 11 sur', 'cristian@elhacker.net', '9-19-1988', 1);");
+			db.execSQL("INSERT INTO paciente (nombres, apellidos, documento, telefono," +
+					"direccion, correo, fechaNacimiento, estado)" +
+					"VALUES ('Cindy Esmeralda', 'Arenas Madronero', '1022836547'," +
+					"'7852587', 'Cll 55 # 87d - 85 sur', 'ceamha@gmail.com', '9-2-1988', 1);");
+			db.execSQL("INSERT INTO paciente (nombres, apellidos, documento, telefono," +
+					"direccion, correo, fechaNacimiento, estado)" +
+					"VALUES ('Alan', 'Turing', '52458748'," +
+					"'5896455', 'Diag 89 # 56 - 55', 'aturing@slakers.com', '11-23-1965', 1);");
+			db.execSQL("INSERT INTO paciente (nombres, apellidos, documento, telefono," +
+					"direccion, correo, fechaNacimiento, estado)" +
+					"VALUES ('Charles', 'Babbage', '66587445'," +
+					"'6884646', 'Kr 89 # 52 - 55d', 'cbabbage@calculator.com', '2-20-1968', 1);");
+			db.execSQL("INSERT INTO paciente (nombres, apellidos, documento, telefono," +
+					"direccion, correo, fechaNacimiento, estado)" +
+					"VALUES ('Isaac', 'Newton', '95682255'," +
+					"'5524635', 'Cll 89 # 52 - 63b', 'isaac@gravity.com', '2-20-1978', 1);");
+			db.execSQL("INSERT INTO paciente (nombres, apellidos, documento, telefono," +
+					"direccion, correo, fechaNacimiento, estado)" +
+					"VALUES ('Dennis', 'Ritchie', '35698741'," +
+					"'6847595', 'Cra 25 # 3a - 55', 'dritchie@unix.org', '6-10-1960', 1);");
+			db.execSQL("INSERT INTO paciente (nombres, apellidos, documento, telefono," +
+					"direccion, correo, fechaNacimiento, estado)" +
+					"VALUES ('Keneth', 'Thompson', '102245563'," +
+					"'6365748', 'St 5th av # 52 - 52', 'keneth@unix.org', '10-10-1961', 1);");
+			db.execSQL("INSERT INTO paciente (nombres, apellidos, documento, telefono," +
+					"direccion, correo, fechaNacimiento, estado)" +
+					"VALUES ('Vinton', 'Cerf', '65689744'," +
+					"'6564699', 'Cll 27d #18 - 38sur', 'vinton@arpanet.org', '6-6-1966', 1);");
+			//insertar citas de prueba
+			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
+					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
+					"VALUES ('Chequeo de rutina', '3-16-2010', '13:00:00', '13:30:00'," +
+					"'', 1, '', '', 1);");
+			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
+					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
+					"VALUES ('Jaqueca', '3-18-2010', '13:00:00', '13:30:00'," +
+					"'', 1, '', '', 1);");
+			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
+					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
+					"VALUES ('Migrana', '3-16-2010', '13:30:00', '14:00:00'," +
+					"'', 2, '', '', 1);");
+			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
+					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
+					"VALUES ('Mareo', '3-17-2010', '8:30:00', '9:00:00'," +
+					"'', 3, '', '', 1);");
+			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
+					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
+					"VALUES ('Calculos Renales', '3-17-2010', '9:30:00', '10:00:00'," +
+					"'', 4, '', '', 1);");
+			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
+					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
+					"VALUES ('Le cayo una manzana en la cabeza', '3-17-2010', '10:00:00', '10:30:00'," +
+					"'', 5, '', '', 1);");
+			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
+					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
+					"VALUES ('Heridas de guerra', '3-18-2010', '11:30:00', '12:30:00'," +
+					"'', 8, '', '', 1);");
 		}
 
 		@Override
@@ -215,6 +278,7 @@ public class AgendaDbAdaptador implements Almacenador {
 	 */
 	private ContentValues obtenerValoresCita(Cita cita) {
 		ContentValues valoresCita = new ContentValues();
+		valoresCita.put("motivo", cita.getMotivo());
 		valoresCita.put("fecha", cita.getFecha());
 		valoresCita.put("horaProgramadaInicio", cita.getHoraProgramadaInicio());
 		valoresCita.put("horaProgramadaFin", cita.getHoraProgramadaFin());
@@ -234,6 +298,7 @@ public class AgendaDbAdaptador implements Almacenador {
 	private Cita crearCita(Cursor cursor) {
 		Cita cita = new Cita();
 		cita.set_id(cursor.getInt(cursor.getColumnIndex("_id")));
+		cita.setMotivo(cursor.getString(cursor.getColumnIndex("motivo")));
 		cita.setFecha(cursor.getString(cursor.getColumnIndex("fecha")));
 		cita.setHoraProgramadaInicio(cursor.getString(cursor.getColumnIndex("horaProgramadaInicio")));
 		cita.setHoraProgramadaFin(cursor.getString(cursor.getColumnIndex("horaProgramadaFin")));

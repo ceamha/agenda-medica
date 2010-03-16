@@ -24,6 +24,7 @@ public final class R {
         public static final int salir=0x7f02000a;
     }
     public static final class id {
+        public static final int apellido_paciente=0x7f05000b;
         public static final int apellidos_paciente=0x7f050001;
         public static final int cancelar_guardar_paciente=0x7f050008;
         public static final int correo_paciente=0x7f050005;
@@ -32,7 +33,7 @@ public final class R {
         public static final int fecha_nacimiento_paciente=0x7f050006;
         public static final int guardar_paciente=0x7f050007;
         public static final int lista=0x7f050009;
-        public static final int lista_pacientes=0x7f05000a;
+        public static final int nombre_paciente=0x7f05000a;
         public static final int nombres_paciente=0x7f050000;
         public static final int telefono_paciente=0x7f050003;
     }

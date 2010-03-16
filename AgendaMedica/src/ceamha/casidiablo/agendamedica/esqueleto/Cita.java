@@ -2,6 +2,7 @@ package ceamha.casidiablo.agendamedica.esqueleto;
 
 public class Cita {
 	private int _id;
+	private String motivo;
 	private String fecha;
 	private String horaProgramadaInicio;
 	private String horaProgramadaFin;
@@ -134,5 +135,19 @@ public class Cita {
 	@Override
 	public String toString(){
 		return getFecha()+" "+getHoraProgramadaInicio();
+	}
+
+	/**
+	 * @param motivo the motivo to set
+	 */
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
+	/**
+	 * @return the motivo
+	 */
+	public String getMotivo() {
+		return motivo;
 	}
 }

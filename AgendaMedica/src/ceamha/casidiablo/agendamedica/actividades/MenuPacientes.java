@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 public class MenuPacientes extends ListActivity {
 
-	static final String[] PACIENTES = new String[] { "ceamha", "casidiablo",
-			"together" };
 	private static final int M_NUEVO = Menu.FIRST;
 	private static final int M_BUSCAR = Menu.FIRST + 1;
 	private AgendaDbAdaptador baseDatos;
@@ -41,16 +39,19 @@ public class MenuPacientes extends ListActivity {
 		switch (item.getItemId()) {
 		case M_NUEVO:
 			Intent intent = new Intent(MenuPacientes.this, NuevoPaciente.class);
-			startActivityForResult(intent, CodigosPeticion.ALGO);
+			startActivityForResult(intent, CodigosPeticion.INSERTAR_PACIENTE);
 			break;
 		}
 		return true;
 	}
 	
+	/**
+	 * Utiliza un objeto cursor obtenido usando el método obtenerPacientes
+	 */
 	private void generarListadoPacientes() {
 		try{
 			Cursor cursor = baseDatos.obtenerPacientes();
-			//avisar a la actividad que se usarÃ¡ un cursor
+			//avisar a la actividad que se usara un cursor
 			startManagingCursor(cursor);
 	        
 	        // Crear un array para especificar los campos que queremos 
@@ -58,9 +59,9 @@ public class MenuPacientes extends ListActivity {
 	        String[] desde = new String[]{"nombres", "apellidos"};
 	        
 	        // Y un array de los campos que queremos enlazar
-	        int[] para = new int[]{R.id.lista_pacientes};
+	        int[] para = new int[]{R.id.nombre_paciente, R.id.apellido_paciente};
 	        
-	        // Now create a simple cursor adapter and set it to display
+	        // Crear un cursoradapter y asignarlo a la pantalla
 	        SimpleCursorAdapter pacientes = new SimpleCursorAdapter(this, R.layout.lista_pacientes, cursor, desde, para);
 	        setListAdapter(pacientes);
 		}catch(Exception e){
