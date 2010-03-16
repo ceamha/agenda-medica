@@ -10,6 +10,18 @@ public class Paciente {
 	private String correo;
 	private String fechaNacimiento;
 	private boolean activo;
+	
+	public Paciente(){
+		setNombres("");
+		setApellidos("");
+		setDocumento(0);
+		setTelefono("");
+		setDireccion("");
+		setCorreo("");
+		setFechaNacimiento("00-00-0000");
+		setActivo(true);
+	}
+	
 	/**
 	 * @return the _id
 	 */

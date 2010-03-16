@@ -1,48 +1,33 @@
 package ceamha.casidiablo.agendamedica.actividades;
 
-import java.util.Calendar;
-import java.util.Vector;
-
 import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
-import ceamha.casidiablo.agendamedica.esqueleto.Cita;
+import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 
 public class AgendaMedica extends ListActivity {
 	
-	private Vector<Cita> citas;
 	private static final int M_PACIENTES = Menu.FIRST;
 	private static final int M_CITAS = Menu.FIRST + 1;
     private static final int M_HORARIO = Menu.FIRST + 2;
     private static final int M_CONSULTAS = Menu.FIRST + 3;
     private static final int M_ESTADISTICAS = Menu.FIRST + 4;
     private static final int SALIR = Menu.FIRST + 5;
+    private AgendaDbAdaptador baseDatos;
     
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.listas, citasDelDia()));
-
-	  ListView lv = getListView();
-	  lv.setTextFilterEnabled(true);
- 
-	  lv.setOnItemClickListener(new OnItemClickListener() {
-	    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-	  	  //Datos de la Cita	      
-	      	      
-	    }
-	  });
+	  //crear el objeto de la conexion a la base de datos
+	  baseDatos = new AgendaDbAdaptador(this);
+	  baseDatos.abrirBaseDatos();
+	  citasDelDia();
 	}
 	
 	@Override
@@ -93,16 +78,24 @@ public class AgendaMedica extends ListActivity {
         finish();
     }
 	
-	public String[] citasDelDia(){
-	/*	Calendar c1 = Calendar.getInstance();
-		String dia = Integer.toString(c1.get(Calendar.DATE));
-		String mes = Integer.toString(c1.get(Calendar.MONTH));
-		String annio = Integer.toString(c1.get(Calendar.YEAR));
-	*/	
-		//Se obtienen las citas asignadas para mostrarlas en el Frontend segun el día actual
-		//y se organizan segun la hora
-		
-	 		
-		return new String[] {"Primera Cita","Segunda Cita","Tercer Cita"};
+	public void citasDelDia(){
+		try{
+			Cursor cursor = baseDatos.obtenerCitas();
+			//avisar a la actividad que se usará un cursor
+			startManagingCursor(cursor);
+	        
+	        // Crear un array para especificar los campos que queremos 
+			//mostrar en la lista (solo la fecha, de momento)
+	        String[] desde = new String[]{"fecha"};
+	        
+	        // Y un array de los campos que queremos enlazar
+	        int[] para = new int[]{R.id.lista};
+	        
+	        // Now create a simple cursor adapter and set it to display
+	        SimpleCursorAdapter citas = new SimpleCursorAdapter(this, R.layout.lista_citas, cursor, desde, para);
+	        setListAdapter(citas);
+		}catch(Exception e){
+			new Notificador().notificar(getApplicationContext(), e.toString(), Toast.LENGTH_LONG);
+		}
 	}
 }

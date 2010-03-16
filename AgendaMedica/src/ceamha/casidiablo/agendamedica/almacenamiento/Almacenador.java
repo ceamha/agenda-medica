@@ -1,7 +1,7 @@
 package ceamha.casidiablo.agendamedica.almacenamiento;
 
-import java.util.Vector;
 
+import android.database.Cursor;
 import ceamha.casidiablo.agendamedica.esqueleto.Cita;
 import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 
@@ -25,7 +25,7 @@ public interface Almacenador {
 	 * @param _id
 	 * @return Persona o null si no existe
 	 */
-	public Vector<Paciente> obtenerPacientes();
+	public Cursor obtenerPacientes();
 	
 	/**
 	 * Inactiva un paciente
@@ -49,15 +49,15 @@ public interface Almacenador {
 	public Cita obtenerCita(int _id);
 	
 	/**
-	 * Devuelve un Vector con todas las citas
+	 * Devuelve un Cursor con todas las citas
 	 * @return
 	 */
-	public Vector<Cita> obtenerCitas();
+	public Cursor obtenerCitas();
 	
 	/**
-	 * Devuelve un Vector con todas un rango de citas
+	 * Devuelve un Cursor con todas un rango de citas
 	 * @return
 	 */
-	public Vector<Cita> obtenerCitas(String desde, String hasta);
+	public Cursor obtenerCitas(String desde, String hasta);
 
 }

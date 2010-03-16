@@ -10,6 +10,18 @@ public class Cita {
 	private String horaInicio;
 	private String horaFin;
 	private boolean estado;
+	
+	public Cita(){
+		set_id(0);
+		setFecha("00-00-0000");
+		setHoraProgramadaInicio("");
+		setHoraProgramadaFin("");
+		setObservaciones("");
+		setIdPaciente(0);
+		setHoraInicio("");
+		setHoraFin("");
+		setEstado(true);
+	}
 
 	/**
 	 * @return the _id
@@ -118,5 +130,9 @@ public class Cita {
 	 */
 	public boolean isEstado() {
 		return estado;
+	}
+	@Override
+	public String toString(){
+		return getFecha()+" "+getHoraProgramadaInicio();
 	}
 }

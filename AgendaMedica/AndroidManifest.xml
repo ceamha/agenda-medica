@@ -12,8 +12,8 @@
             </intent-filter>
         </activity>
 		<activity android:name="MenuPacientes" android:label="Menu de Pacientes"></activity>
-		<activity android:name="Paciente" android:label="Paciente"></activity>
 		<activity android:name="MenuCitas" android:label="Menu de Citas"></activity>
+		<activity android:name="NuevoPaciente" android:label="Creación de nuevo paciente"></activity>
     </application>
     <uses-sdk android:minSdkVersion="7" />
 

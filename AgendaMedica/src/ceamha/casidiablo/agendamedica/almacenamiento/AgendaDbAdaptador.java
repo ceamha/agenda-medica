@@ -1,7 +1,5 @@
 package ceamha.casidiablo.agendamedica.almacenamiento;
 
-import java.util.Vector;
-
 import ceamha.casidiablo.agendamedica.esqueleto.Cita;
 import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 import android.content.ContentValues;
@@ -11,7 +9,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 
 /**
  * Esta clase define las operaciones CRUD basicas para almacenar los datos de la
@@ -87,7 +84,7 @@ public class AgendaDbAdaptador implements Almacenador {
 	 * @throws SQLException
 	 *             si la base de datos no puede ser creada o abierta
 	 */
-	public AgendaDbAdaptador open() throws SQLException {
+	public AgendaDbAdaptador abrirBaseDatos() throws SQLException {
 		facilitadorBD = new DatabaseHelper(contexto);
 		baseDatos = facilitadorBD.getWritableDatabase();
 		return this;
@@ -108,7 +105,7 @@ public class AgendaDbAdaptador implements Almacenador {
 				" _id =" + cita.get_id(),
 				null, null, null, null, null);
 		//si es null, entonces la cita no existe, y por ende se debe crear
-		if (mCursor == null)
+		if (mCursor.getCount() == 0)
 			return baseDatos.insert("cita", null, valoresCita);
 		//actualizarla
 		else if (baseDatos.update("cita", valoresCita, " _id =" + cita.get_id(), null) > 0)
@@ -127,7 +124,7 @@ public class AgendaDbAdaptador implements Almacenador {
 				" _id =" + paciente.get_id(),
 				null, null, null, null, null);
 		//si es null, entonces el paciente no existe, y por ende se debe crear
-		if (mCursor == null)
+		if (mCursor.getCount() == 0)
 			return baseDatos.insert("paciente", null, valoresPaciente);
 		//actualizar
 		else if (baseDatos.update("paciente", valoresPaciente, " _id = " + paciente.get_id(), null) > 0)
@@ -154,39 +151,30 @@ public class AgendaDbAdaptador implements Almacenador {
 	}
 
 	@Override
-	public Vector<Cita> obtenerCitas() {
+	public Cursor obtenerCitas() {
 		Cursor cursor = baseDatos.query("cita", new String[] { "_id", "fecha", "horaProgramadaInicio",
-			"horaProgramadaFin", "observaciones", "idPaciente", "horaInicio",
-			"horaFin", "estado" }, null, null, null, null, null);
-		Vector<Cita> citas = new Vector<Cita>();
-		while(cursor != null && cursor.moveToNext())
-			citas.add(crearCita(cursor));
-		return citas;
+				"horaProgramadaFin", "observaciones", "idPaciente", "horaInicio",
+				"horaFin", "estado" }, null, null, null, null, null);
+		return cursor;
 	}
 
 	@Override
-	public Vector<Cita> obtenerCitas(String desde, String hasta) {
+	public Cursor obtenerCitas(String desde, String hasta) {
 		Cursor cursor = baseDatos.query("cita", new String[] { "_id", "fecha", "horaProgramadaInicio",
 				"horaProgramadaFin", "observaciones", "idPaciente", "horaInicio",
 				"horaFin", "estado" },
 				"fechaProgramadaFin >= " + desde + " AND fechaProgramadaFin <= " + hasta,
 				null, null, null, null);
-		Vector<Cita> citas = new Vector<Cita>();
-		while(cursor != null && cursor.moveToNext())
-			citas.add(crearCita(cursor));
-		return citas;
+		return cursor;
 	}
 
 	@Override
-	public Vector<Paciente> obtenerPacientes() {
+	public Cursor obtenerPacientes() {
 		Cursor cursor = baseDatos.query("paciente", new String[] { "_id",
 				"nombres", "apellidos", "documento", "telefono",
 				"direccion", "correo", "fechaNacimiento", "estado"},
 				null, null, null, null, null);
-		Vector<Paciente> pacientes = new Vector<Paciente>();
-		while(cursor != null && cursor.moveToNext())
-			pacientes.add(crearPaciente(cursor));
-		return pacientes;
+		return cursor;
 	}
 
 	@Override

@@ -24,17 +24,28 @@ public final class R {
         public static final int salir=0x7f02000a;
     }
     public static final class id {
-        public static final int nombres=0x7f050000;
+        public static final int apellidos_paciente=0x7f050001;
+        public static final int cancelar_guardar_paciente=0x7f050008;
+        public static final int correo_paciente=0x7f050005;
+        public static final int direccion_paciente=0x7f050004;
+        public static final int documento_paciente=0x7f050002;
+        public static final int fecha_nacimiento_paciente=0x7f050006;
+        public static final int guardar_paciente=0x7f050007;
+        public static final int lista=0x7f050009;
+        public static final int lista_pacientes=0x7f05000a;
+        public static final int nombres_paciente=0x7f050000;
+        public static final int telefono_paciente=0x7f050003;
     }
     public static final class layout {
-        public static final int listas=0x7f030000;
-        public static final int main=0x7f030001;
-        public static final int paciente=0x7f030002;
+        public static final int crear_paciente=0x7f030000;
+        public static final int lista_citas=0x7f030001;
+        public static final int lista_pacientes=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int hello=0x7f040001;
         public static final int m_actualizar_paciente=0x7f040008;
+        public static final int m_buscar_paciente=0x7f04000a;
         public static final int m_citas=0x7f040003;
         public static final int m_consultas=0x7f040005;
         public static final int m_estadisticas=0x7f040006;
