@@ -4,10 +4,6 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
   android:orientation="vertical">
-  <EditText android:id="@+id/temporal"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content"
-  ></EditText>
   <ImageView android:id="@+id/imagen"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"/>

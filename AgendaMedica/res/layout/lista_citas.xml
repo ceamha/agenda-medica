@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView android:id="@+id/motivo_cita" xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="10dp"
-    android:textSize="16sp"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="horizontal" android:padding="10dp">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:orientation="vertical">
+		<LinearLayout android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<TextView android:id="@+id/hora_cita" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:textSize="16sp"
+				android:text="33:00:00"/>
+			<TextView android:id="@+id/fecha_cita" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:textSize="10sp"
+				android:textColor="#ccc" android:text="03-03-0303"
+				android:layout_marginLeft="10px"
+				android:layout_alignParentRight="true"/>
+		</LinearLayout>
+		<TextView android:id="@+id/motivo_cita" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textSize="10sp"
+			android:textColor="#ccc" android:text="Esto es el motivo"/>
+	</LinearLayout>
+</LinearLayout>

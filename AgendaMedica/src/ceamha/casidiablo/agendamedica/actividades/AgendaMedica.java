@@ -91,7 +91,7 @@ public class AgendaMedica extends ListActivity {
 	        String[] desde = new String[] {"motivo", "fecha", "horaProgramadaInicio"};
 	        
 	        // Y un array de los campos que queremos enlazar
-	        int[] para = new int[]{R.id.motivo_cita};
+	        int[] para = new int[]{R.id.motivo_cita, R.id.fecha_cita, R.id.hora_cita};
 	        
 	        // Now create a simple cursor adapter and set it to display
 	        SimpleCursorAdapter citas = new SimpleCursorAdapter(this, R.layout.lista_citas, cursor, desde, para);

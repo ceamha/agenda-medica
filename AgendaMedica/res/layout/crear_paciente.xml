@@ -7,57 +7,53 @@
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Nombres" />
+			android:layout_height="wrap_content" android:text="Nombres: " />
 		<EditText android:id="@+id/nombres_paciente" android:layout_width="fill_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp"/>
 	</LinearLayout>
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Apellidos" />
+			android:layout_height="wrap_content" android:text="Apellidos: " />
 		<EditText android:id="@+id/apellidos_paciente" android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Documento" />
+			android:layout_height="wrap_content" android:text="Documento: " />
 		<EditText android:id="@+id/documento_paciente" android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Telefono" />
+			android:layout_height="wrap_content" android:text="Teléfono: " />
 		<EditText android:id="@+id/telefono_paciente" android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Direccion" />
+			android:layout_height="wrap_content" android:text="Dirección: " />
 		<EditText android:id="@+id/direccion_paciente" android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Correo" />
+			android:layout_height="wrap_content" android:text="Correo: " />
 		<EditText android:id="@+id/correo_paciente" android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Fecha nacimiento (mm-dd-aaaa)" />
+			android:layout_height="wrap_content" android:text="Fecha nacimiento (mm-dd-aaaa): " />
 		<EditText android:id="@+id/fecha_nacimiento_paciente" android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
 	</LinearLayout>
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="fill_parent" android:layout_height="wrap_content">
-		<Button android:id="@+id/guardar_paciente" android:layout_width="wrap_content"
+	<Button android:id="@+id/guardar_paciente" android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:text="Guardar" />
-		<Button android:id="@+id/cancelar_guardar_paciente" android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="Cancelar"/>
-	</LinearLayout>
 </LinearLayout>

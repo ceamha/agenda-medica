@@ -56,7 +56,7 @@ public class MenuPacientes extends ListActivity {
 	        
 	        // Crear un array para especificar los campos que queremos 
 			//mostrar en la lista (solo la fecha, de momento)
-	        String[] desde = new String[]{"nombres"};
+	        String[] desde = new String[]{"apellidos"};
 	        
 	        // Y un array de los campos que queremos enlazar
 	        int[] para = new int[]{R.id.nombre_paciente};

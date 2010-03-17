@@ -19,7 +19,6 @@ public class NuevoPaciente extends Activity{
 	private EditText correo;
 	private EditText fechaNacimiento;
 	private Button guardar;
-	private Button cancelar;
 	private AgendaDbAdaptador baseDatos;
 	@Override
 	public void onCreate(Bundle bundle){
@@ -47,13 +46,6 @@ public class NuevoPaciente extends Activity{
 			}
 		});
 		
-		cancelar = (Button) findViewById(R.id.cancelar_guardar_paciente);
-		cancelar.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
 	}
 	
 	private void insertarPaciente(){
