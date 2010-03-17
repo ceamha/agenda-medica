@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="ceamha.casidiablo.agendamedica.actividades"
-      android:versionCode="1"
-      android:versionName="1.0">
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".AgendaMedica"
-                  android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+	package="ceamha.casidiablo.agendamedica.actividades"
+	android:versionCode="1" android:versionName="1.0">
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<activity android:name=".AgendaMedica" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
 		<activity android:name="MenuPacientes" android:label="Menu de Pacientes"></activity>
-		
 		<activity android:name="NuevoPaciente" android:label="Creación de nuevo paciente"></activity>
-    <activity android:name="DespliegueEstadisticas"></activity>
-</application>
-    <uses-sdk android:minSdkVersion="7" />
-
+		<activity android:name="DespliegueEstadisticas"
+			android:label="Estadisticas"></activity>
+	</application>
+	<uses-sdk android:minSdkVersion="7" />
+	<uses-permission android:name="android.permission.INTERNET" />
 </manifest> 

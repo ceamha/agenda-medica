@@ -46,7 +46,7 @@ public class MenuPacientes extends ListActivity {
 	}
 	
 	/**
-	 * Utiliza un objeto cursor obtenido usando el método obtenerPacientes
+	 * Utiliza un objeto cursor obtenido usando el metodo obtenerPacientes
 	 */
 	private void generarListadoPacientes() {
 		try{
@@ -56,10 +56,10 @@ public class MenuPacientes extends ListActivity {
 	        
 	        // Crear un array para especificar los campos que queremos 
 			//mostrar en la lista (solo la fecha, de momento)
-	        String[] desde = new String[]{"nombres", "apellidos"};
+	        String[] desde = new String[]{"nombres"};
 	        
 	        // Y un array de los campos que queremos enlazar
-	        int[] para = new int[]{R.id.nombre_paciente, R.id.apellido_paciente};
+	        int[] para = new int[]{R.id.nombre_paciente};
 	        
 	        // Crear un cursoradapter y asignarlo a la pantalla
 	        SimpleCursorAdapter pacientes = new SimpleCursorAdapter(this, R.layout.lista_pacientes, cursor, desde, para);

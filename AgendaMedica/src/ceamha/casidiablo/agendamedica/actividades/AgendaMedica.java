@@ -62,8 +62,10 @@ public class AgendaMedica extends ListActivity {
 	               //f_pesetas_a_euros();
 	               break;
 	           case M_ESTADISTICAS:
-	        	   intent = new Intent(AgendaMedica.this, DespliegueEstadisticas.class);
-		       	   startActivity(intent);
+	        	   try{
+	        	   Intent intento = new Intent(AgendaMedica.this, DespliegueEstadisticas.class);
+		       	   startActivity(intento);
+	        	   }catch(Exception e){new Notificador().notificar(this, e.toString(), Toast.LENGTH_LONG);}
 	               break;
 	           case SALIR:
 	               salir();
