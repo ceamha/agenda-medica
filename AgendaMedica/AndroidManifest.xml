@@ -14,7 +14,8 @@
 		<activity android:name="MenuPacientes" android:label="Menu de Pacientes"></activity>
 		
 		<activity android:name="NuevoPaciente" android:label="Creación de nuevo paciente"></activity>
-    </application>
+    <activity android:name="DespliegueEstadisticas"></activity>
+</application>
     <uses-sdk android:minSdkVersion="7" />
 
 </manifest> 
