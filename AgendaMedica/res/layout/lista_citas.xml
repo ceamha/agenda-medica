@@ -15,6 +15,9 @@
 				android:layout_marginLeft="10px"
 				android:layout_alignParentRight="true"/>
 		</LinearLayout>
+		<TextView android:id="@+id/paciente_cita" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textSize="13sp"
+			android:textColor="#ccc" android:text="Nombre del paciente"/>
 		<TextView android:id="@+id/motivo_cita" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:textSize="10sp"
 			android:textColor="#ccc" android:text="Esto es el motivo"/>

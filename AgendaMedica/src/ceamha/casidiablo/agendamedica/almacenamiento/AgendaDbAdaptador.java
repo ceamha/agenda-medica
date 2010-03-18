@@ -216,9 +216,10 @@ public class AgendaDbAdaptador implements Almacenador {
 
 	@Override
 	public Cursor obtenerCitas() {
-		Cursor cursor = baseDatos.query("cita", new String[] { "_id", "motivo", "fecha", "horaProgramadaInicio",
-				"horaProgramadaFin", "observaciones", "idPaciente", "horaInicio",
-				"horaFin", "estado" }, null, null, null, null, null);
+		Cursor cursor = baseDatos.rawQuery("SELECT cita._id, motivo, fecha, horaProgramadaInicio," +
+				"horaProgramadaFin, observaciones, paciente.nombres||' '||paciente.apellidos AS paciente," +
+				"horaInicio, horaFin, cita.estado FROM cita, paciente WHERE paciente._id = cita.idPaciente " +
+				" AND cita.estado = 1 ORDER BY fecha, horaProgramadaInicio ASC", null); 
 		return cursor;
 	}
 

@@ -6,8 +6,13 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 
 public class AgendaMedica extends ListActivity {
@@ -20,7 +25,15 @@ public class AgendaMedica extends ListActivity {
     private static final int SALIR = Menu.FIRST + 5;
     private AgendaDbAdaptador baseDatos;
     
-    
+	// Crear un manejador de eventos para la lista
+	private OnItemClickListener manejadorClickCita = new OnItemClickListener() {
+	    public void onItemClick(AdapterView parent, View v, int position, long id)
+	    {
+	        // Display a messagebox.
+	        Toast.makeText(v.getContext(), position+"y ahora? "+id,Toast.LENGTH_SHORT).show();
+	    }
+	};
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
@@ -28,6 +41,9 @@ public class AgendaMedica extends ListActivity {
 	  baseDatos = new AgendaDbAdaptador(this);
 	  baseDatos.abrirBaseDatos();
 	  citasDelDia();
+	  ListView lv = getListView();
+	  lv.setTextFilterEnabled(false);
+	  lv.setOnItemClickListener(manejadorClickCita);
 	}
 	
 	@Override
@@ -88,10 +104,10 @@ public class AgendaMedica extends ListActivity {
 	        
 	        // Crear un array para especificar los campos que queremos 
 			//mostrar en la lista (solo la fecha, de momento)
-	        String[] desde = new String[] {"motivo", "fecha", "horaProgramadaInicio"};
+	        String[] desde = new String[] {"motivo", "fecha", "horaProgramadaInicio", "paciente"};
 	        
 	        // Y un array de los campos que queremos enlazar
-	        int[] para = new int[]{R.id.motivo_cita, R.id.fecha_cita, R.id.hora_cita};
+	        int[] para = new int[]{R.id.motivo_cita, R.id.fecha_cita, R.id.hora_cita, R.id.paciente_cita};
 	        
 	        // Now create a simple cursor adapter and set it to display
 	        SimpleCursorAdapter citas = new SimpleCursorAdapter(this, R.layout.lista_citas, cursor, desde, para);
@@ -100,4 +116,5 @@ public class AgendaMedica extends ListActivity {
 			new Notificador().notificar(getApplicationContext(), e.toString(), Toast.LENGTH_LONG);
 		}
 	}
+	
 }
