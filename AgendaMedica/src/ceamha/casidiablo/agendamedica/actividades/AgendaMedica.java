@@ -66,10 +66,11 @@ public class AgendaMedica extends ListActivity {
            switch(item.getItemId()) {
 	           case M_PACIENTES:
 	       	      intent = new Intent(AgendaMedica.this, MenuPacientes.class);
-	       	      startActivity(intent);
+	       	      startActivityForResult(intent, CodigosPeticion.INSERTAR_PACIENTE);
 	               break;
 	           case M_ADD_CITAS:
-	        	   citasDelDia();
+	        	   intent = new Intent(AgendaMedica.this, NuevaCita.class);
+	        	   startActivityForResult(intent, CodigosPeticion.INSERTAR_CITA);
 	               break;
 	           case M_HORARIO:
 	               //f_euros_a_pesetas();

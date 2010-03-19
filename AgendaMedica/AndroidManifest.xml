@@ -13,6 +13,7 @@
 		<activity android:name="NuevoPaciente" android:label="Creación de nuevo paciente"></activity>
 		<activity android:name="DespliegueEstadisticas"
 			android:label="Estadisticas"></activity>
+		<activity android:name="NuevaCita" android:label="Creación de nueva cita"></activity>
 	</application>
 	<uses-sdk android:minSdkVersion="7" />
 	<uses-permission android:name="android.permission.INTERNET" />
