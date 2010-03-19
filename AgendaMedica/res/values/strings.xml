@@ -3,7 +3,7 @@
 	<string name="app_name">Agenda Medica</string>
     
     <string name="m_pacientes">Pacientes</string>
-    <string name="m_citas">Citas</string>
+    <string name="m_citas">Añadir cita</string>
     <string name="m_horario">Horario Medico </string>
     <string name="m_consultas">Consultas</string>
     <string name="m_estadisticas">Estadisticas</string>

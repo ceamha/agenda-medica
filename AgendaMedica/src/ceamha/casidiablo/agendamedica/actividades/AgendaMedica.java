@@ -10,15 +10,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 
 public class AgendaMedica extends ListActivity {
 	
-	private static final int M_PACIENTES = Menu.FIRST;
-	private static final int M_CITAS = Menu.FIRST + 1;
+	private static final int M_ADD_CITAS = Menu.FIRST;
+	private static final int M_PACIENTES = Menu.FIRST + 1;
     private static final int M_HORARIO = Menu.FIRST + 2;
     private static final int M_CONSULTAS = Menu.FIRST + 3;
     private static final int M_ESTADISTICAS = Menu.FIRST + 4;
@@ -27,7 +26,8 @@ public class AgendaMedica extends ListActivity {
     
 	// Crear un manejador de eventos para la lista
 	private OnItemClickListener manejadorClickCita = new OnItemClickListener() {
-	    public void onItemClick(AdapterView parent, View v, int position, long id)
+	    @SuppressWarnings("unchecked")
+		public void onItemClick(AdapterView parent, View v, int position, long id)
 	    {
 	        // Display a messagebox.
 	        Toast.makeText(v.getContext(), position+"y ahora? "+id,Toast.LENGTH_SHORT).show();
@@ -49,8 +49,8 @@ public class AgendaMedica extends ListActivity {
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(Menu.NONE, M_PACIENTES, 0, R.string.m_pacientes).setIcon(R.drawable.clientes);
-        menu.add(Menu.NONE, M_CITAS, 1, R.string.m_citas).setIcon(R.drawable.citas);
+        menu.add(Menu.NONE, M_ADD_CITAS, 0, R.string.m_citas).setIcon(R.drawable.citas);
+        menu.add(Menu.NONE, M_PACIENTES, 1, R.string.m_pacientes).setIcon(R.drawable.clientes);
         menu.add(Menu.NONE, M_HORARIO, 2, R.string.m_horario).setIcon(R.drawable.horario);
         menu.add(Menu.NONE, M_CONSULTAS, 3, R.string.m_consultas).setIcon(R.drawable.consultas);
         menu.add(Menu.NONE, M_ESTADISTICAS, 4, R.string.m_estadisticas).setIcon(R.drawable.estadisticas);
@@ -68,7 +68,7 @@ public class AgendaMedica extends ListActivity {
 	       	      intent = new Intent(AgendaMedica.this, MenuPacientes.class);
 	       	      startActivity(intent);
 	               break;
-	           case M_CITAS:
+	           case M_ADD_CITAS:
 	        	   citasDelDia();
 	               break;
 	           case M_HORARIO:
