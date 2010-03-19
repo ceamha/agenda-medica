@@ -7,8 +7,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MenuPacientes extends ListActivity {
 
@@ -22,7 +26,22 @@ public class MenuPacientes extends ListActivity {
 		baseDatos = new AgendaDbAdaptador(this);
 		baseDatos.abrirBaseDatos();
 		generarListadoPacientes();
+		ListView lv = getListView();
+		lv.setTextFilterEnabled(false);
+		lv.setOnItemClickListener(manejadorClickPaciente);
 	}
+	
+	// Crear un manejador de eventos para la lista
+	private OnItemClickListener manejadorClickPaciente = new OnItemClickListener() {
+	    @SuppressWarnings("unchecked")
+		public void onItemClick(AdapterView parent, View v, int position, long id)
+	    {
+	        // Display a messagebox.
+	        Toast.makeText(v.getContext(), position+":Paciente? "+id,Toast.LENGTH_SHORT).show();
+	        Intent intent = new Intent(MenuPacientes.this, Paciente.class);
+     	    startActivity(intent);
+	    }
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
