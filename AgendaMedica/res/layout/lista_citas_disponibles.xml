@@ -6,15 +6,15 @@
 		android:layout_height="fill_parent" android:orientation="vertical">
 		<LinearLayout android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:orientation="horizontal">
-			<TextView android:id="@+id/hora_inicio_cita" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:textSize="16sp"
-				android:text="33:00:00"/>
+			<TextView android:id="@+id/hora_inicio_cita"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textSize="30sp" android:text="33:00:00"
+				android:layout_gravity="center_vertical|center_horizontal" />
+			<TextView android:id="@+id/vacante"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
-		<TextView android:id="@+id/nombre_paciente" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:textSize="13sp"
-			android:textColor="#ccc" android:text="Nombre del paciente"/>
-		<TextView android:id="@+id/motivo_cita" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:textSize="10sp"
-			android:textColor="#ccc" android:text="Esto es el motivo"/>
+		<TextView android:id="@+id/nombre_paciente"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textSize="13sp" android:textColor="#ccc" android:text="Nombre del paciente" />
 	</LinearLayout>
 </LinearLayout>
