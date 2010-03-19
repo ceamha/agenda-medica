@@ -13,16 +13,9 @@
 		<activity android:name="NuevoPaciente" android:label="Creación de nuevo paciente"></activity>
 		<activity android:name="DespliegueEstadisticas"
 			android:label="Estadisticas"></activity>
-<<<<<<< HEAD:AgendaMedica/AndroidManifest.xml
 		<activity android:name="InformacionPaciente" android:label="Información Paciente"></activity>
-=======
-<<<<<<< HEAD
 		<activity android:name="NuevaCita" android:label="Creación de nueva cita"></activity>
 		<activity android:name="ListaCitasDisponibles" android:label="Lista de citas disponibles"></activity>
-=======
-		<activity android:name="Paciente" android:label="Información Paciente"></activity>
->>>>>>> 4a165c023810ac001c96fd4dacc3eb3926444f0b
->>>>>>> 35f6c6a8cd929d42a6bd3bffcb64d7a577d2e808:AgendaMedica/AndroidManifest.xml
 	</application>
 	<uses-sdk android:minSdkVersion="7" />
 	<uses-permission android:name="android.permission.INTERNET" />
