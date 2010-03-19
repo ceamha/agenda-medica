@@ -37,6 +37,7 @@ public final class R {
         public static final int motivo_cita=0x7f05000c;
         public static final int nombre_paciente=0x7f05000d;
         public static final int nombres_paciente=0x7f050000;
+        public static final int paciente=0x7f05000f;
         public static final int paciente_cita=0x7f05000b;
         public static final int telefono_paciente=0x7f050003;
     }
@@ -45,6 +46,7 @@ public final class R {
         public static final int despliegue_estadisticas=0x7f030001;
         public static final int lista_citas=0x7f030002;
         public static final int lista_pacientes=0x7f030003;
+        public static final int paciente=0x7f030004;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
