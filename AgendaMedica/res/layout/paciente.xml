@@ -3,9 +3,10 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content">
-  <TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:id="@+id/paciente"
-    />
+  <TextView android:id="@+id/info_nombre" android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textSize="14sp"
+            android:text="Nombres:"
+            />
+            
 </LinearLayout>

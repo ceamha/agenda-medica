@@ -38,7 +38,7 @@ public class MenuPacientes extends ListActivity {
 	    {
 	        // Display a messagebox.
 	        Toast.makeText(v.getContext(), position+":Paciente? "+id,Toast.LENGTH_SHORT).show();
-	        Intent intent = new Intent(MenuPacientes.this, Paciente.class);
+	        Intent intent = new Intent(MenuPacientes.this, InformacionPaciente.class);
      	    startActivity(intent);
 	    }
 	};

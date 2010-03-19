@@ -1,5 +1,6 @@
 package ceamha.casidiablo.agendamedica.almacenamiento;
 
+import ceamha.casidiablo.agendamedica.actividades.Notificador;
 import ceamha.casidiablo.agendamedica.esqueleto.Cita;
 import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 import android.content.ContentValues;
@@ -228,7 +229,7 @@ public class AgendaDbAdaptador implements Almacenador {
 		Cursor cursor = baseDatos.query("cita", new String[] { "_id", "fecha", "horaProgramadaInicio",
 				"horaProgramadaFin", "observaciones", "idPaciente", "horaInicio",
 				"horaFin", "estado" },
-				"fechaProgramadaFin >= " + desde + " AND fechaProgramadaFin <= " + hasta,
+				"horaProgramadaFin >= " + desde + " AND horaProgramadaFin <= " + hasta,
 				null, null, null, null);
 		return cursor;
 	}
@@ -329,5 +330,21 @@ public class AgendaDbAdaptador implements Almacenador {
 		paciente.setFechaNacimiento(cursor.getString(cursor.getColumnIndex("fechaNacimiento")));
 		paciente.setActivo(cursor.getInt(cursor.getColumnIndex("estado")) == 1);
 		return paciente;
+	}
+
+	@Override
+	public Cursor consultaSQLDirecta(String consulta){
+		return baseDatos.rawQuery(consulta, null); 
+	}
+
+	@Override
+	public Cursor obtenerCitasDisponibles(String fecha) {
+		Cursor cursor = null;
+		try{
+			cursor = baseDatos.rawQuery("SELECT c._id, c.horaProgramadaInicio, c.horaProgramadaFin," +
+					"c.motivo, p.nombres||' '||p.apellidos AS nombresPaciente " +
+					"FROM cita c, paciente p WHERE fecha LIKE '"+fecha+"' AND c.idPaciente  = p._id", null);
+		}catch(SQLException e){new Notificador().notificar(contexto, "Error: "+e.toString(), 1);}
+		return cursor;
 	}
 }
