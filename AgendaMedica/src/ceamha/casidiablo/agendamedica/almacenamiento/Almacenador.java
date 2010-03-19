@@ -2,10 +2,14 @@ package ceamha.casidiablo.agendamedica.almacenamiento;
 
 
 import android.database.Cursor;
+import android.database.SQLException;
 import ceamha.casidiablo.agendamedica.esqueleto.Cita;
 import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 
 public interface Almacenador {
+	
+	public Cursor consultaSQLDirecta(String consulta) throws SQLException;
+	
 	/**
 	 * Almacena o actualiza un paciente.
 	 * @param paciente
@@ -59,5 +63,7 @@ public interface Almacenador {
 	 * @return
 	 */
 	public Cursor obtenerCitas(String desde, String hasta);
+	
+	public Cursor obtenerCitasDisponibles(String fecha);
 
 }
