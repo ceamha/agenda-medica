@@ -36,9 +36,9 @@ public class MenuPacientes extends ListActivity {
 	    @SuppressWarnings("unchecked")
 		public void onItemClick(AdapterView parent, View v, int position, long id)
 	    {
-	        // Display a messagebox.
-	        Toast.makeText(v.getContext(), position+":Paciente? "+id,Toast.LENGTH_SHORT).show();
 	        Intent intent = new Intent(MenuPacientes.this, InformacionPaciente.class);
+	        //le envio el id del paciente :)
+	        intent.putExtra("idPaciente", (int)id);
      	    startActivity(intent);
 	    }
 	};

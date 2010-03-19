@@ -244,8 +244,8 @@ public class AgendaDbAdaptador implements Almacenador {
 	}
 
 	@Override
-	public Paciente obtenerPaciente(int id) {
-		Cursor cursor = baseDatos.query("table", new String[] { "_id",
+	public Paciente obtenerPaciente(int id){
+		Cursor cursor = baseDatos.query("paciente", new String[] { "_id",
 				"nombres", "apellidos", "documento", "telefono",
 				"direccion", "correo", "fechaNacimiento", "estado"},
 				"_id = " + id, null, null, null, null);

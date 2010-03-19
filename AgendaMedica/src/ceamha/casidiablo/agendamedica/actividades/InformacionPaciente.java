@@ -1,40 +1,32 @@
 package ceamha.casidiablo.agendamedica.actividades;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 
 public class InformacionPaciente extends Activity{
 	
 	private TextView nombre;
-	private EditText nombre2;
 	private AgendaDbAdaptador baseDatos;
-	private Paciente paciente = new Paciente();
+	private Paciente paciente;
 	
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Context mContext = getApplicationContext();    
-        nombre = (TextView) findViewById(R.id.info_nombre);
-        mostrarInformacion(mContext);
         setContentView(R.layout.paciente);
-        
-	}
-
-	public void mostrarInformacion(Context c){
-		try{			
-			
-			Toast.makeText(c, "y ahora?:"+this.nombre,Toast.LENGTH_SHORT).show();
-			paciente = baseDatos.obtenerPaciente(1);			
-			nombre.setText(nombre.getText()+"hola");
-	        
-		}catch(Exception e){
-			
-		}
+        //crear y abrir base de datos
+        baseDatos = new AgendaDbAdaptador(this);
+        baseDatos.abrirBaseDatos();
+        //obtener el ID del paciente que me lo pasa la anterior actividad
+        Bundle extras = getIntent().getExtras();
+        int idPaciente = 0;
+		if(extras !=null)
+			idPaciente = extras.getInt("idPaciente");
+        //obtener el paciente
+		paciente = baseDatos.obtenerPaciente(idPaciente);
+		nombre = (TextView) findViewById(R.id.info_nombre);
+		nombre.setText(nombre.getText()+" "+paciente.getNombres()+" "+paciente.getApellidos());
 	}
 }
