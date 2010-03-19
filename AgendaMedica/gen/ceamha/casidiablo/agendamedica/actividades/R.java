@@ -34,10 +34,10 @@ public final class R {
         public static final int guardar_paciente=0x7f050007;
         public static final int hora_cita=0x7f050009;
         public static final int imagen=0x7f050008;
+        public static final int info_nombre=0x7f05000f;
         public static final int motivo_cita=0x7f05000c;
         public static final int nombre_paciente=0x7f05000d;
         public static final int nombres_paciente=0x7f050000;
-        public static final int paciente=0x7f05000f;
         public static final int paciente_cita=0x7f05000b;
         public static final int telefono_paciente=0x7f050003;
     }
