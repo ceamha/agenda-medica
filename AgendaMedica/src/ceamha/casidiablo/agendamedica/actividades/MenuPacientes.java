@@ -65,12 +65,12 @@ public class MenuPacientes extends ListActivity {
 			startActivityForResult(intent, CodigosPeticion.INSERTAR_PACIENTE);
 			break;
 		case M_INACTIVOS:
-			try{
-				intent = new Intent(MenuPacientes.this, ListaPacientesInactivos.class);
-				startActivityForResult(intent, CodigosPeticion.LISTA_PACIENTES_INACTIVOS);
-			}catch(Exception e){
-			new Notificador().notificar(this, e.toString(), 1);
-			}
+			intent = new Intent(MenuPacientes.this, ListaPacientesInactivos.class);
+			startActivityForResult(intent, CodigosPeticion.LISTA_PACIENTES_INACTIVOS);			
+			break;
+		case M_BUSCAR:
+			intent = new Intent(MenuPacientes.this, BuscarPacientes.class);
+			startActivityForResult(intent, CodigosPeticion.BUSCAR_PACIENTE);
 			break;
 		}
 		return true;

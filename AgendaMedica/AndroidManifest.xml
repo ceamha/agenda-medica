@@ -20,6 +20,8 @@
 		<activity android:name="ListaPacientesInactivos" android:label="Lista de Pacientes Inactivos"></activity>
 		<activity android:name="ProgramarCitaPaciente" android:label="Programar cita"></activity>
 		<activity android:name="MotivoCita" android:label="Asignar el motivo de la cita"></activity>
+		<activity android:name="BuscarPacientes" android:label="Buscando Pacientes por Nombre"></activity>
+		<activity android:name="ListaPacientesBuscados" android:label="Lista de Pacientes Buscados"></activity>
 		<!--<activity android:name="Paciente" android:label="Información Paciente"></activity>-->
 	</application>
 	<uses-sdk android:minSdkVersion="7" />

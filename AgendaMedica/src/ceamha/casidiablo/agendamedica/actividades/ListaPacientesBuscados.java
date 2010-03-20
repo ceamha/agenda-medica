@@ -1,35 +1,35 @@
 package ceamha.casidiablo.agendamedica.actividades;
 
+import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 
-public class ListaPacientesInactivos extends ListActivity {
-
-	private static final int M_BUSCAR = Menu.FIRST;
+public class ListaPacientesBuscados extends ListActivity{
 	
 	private AgendaDbAdaptador baseDatos;
+	private Bundle extras;
 	
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		baseDatos = new AgendaDbAdaptador(this);
 		baseDatos.abrirBaseDatos();
-		generarListadoPacientes();
+		//obtener el nombre de los pacientes que se quieren buscar
+        extras = getIntent().getExtras();
+        String datos = "";
+		if(extras !=null)
+			datos = extras.getString("dato");
+		generarListadoPacientes(datos);
 		ListView lv = getListView();
 		lv.setTextFilterEnabled(false);
-		lv.setOnItemClickListener(manejadorClickPaciente);
-		
+		lv.setOnItemClickListener(manejadorClickPaciente);		
 	}
 	
 	// Crear un manejador de eventos para la lista
@@ -37,39 +37,19 @@ public class ListaPacientesInactivos extends ListActivity {
 	    @SuppressWarnings("unchecked")
 		public void onItemClick(AdapterView parent, View v, int position, long id)
 	    {
-	        Intent intent = new Intent(ListaPacientesInactivos.this, InformacionPaciente.class);
+	        Intent intent = new Intent(ListaPacientesBuscados.this, InformacionPaciente.class);
 	        //le envio el id del paciente :)
 	        intent.putExtra("idPaciente", (int)id);
      	    startActivity(intent);
 	    }
 	};
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE, M_BUSCAR, 0, R.string.m_buscar_paciente).setIcon(
-				R.drawable.consultas);
-		return true;
-	}
-
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		super.onMenuItemSelected(featureId, item);
-		Intent intent;
-		switch (item.getItemId()) {
-		case M_BUSCAR:
-			intent = new Intent(ListaPacientesInactivos.this, BuscarPacientes.class);
-			startActivityForResult(intent, CodigosPeticion.BUSCAR_PACIENTE);
-			break;
-		}
-		return true;
-	}
 	
 	/**
 	 * Utiliza un objeto cursor obtenido usando el metodo obtenerPacientes
 	 */
-	private void generarListadoPacientes() {
+	private void generarListadoPacientes(String dato) {
 		try{
-			Cursor cursor = baseDatos.consultaSQLDirecta("select _id, nombres, apellidos, documento, telefono, direccion, correo, fechaNacimiento, estado from paciente where estado=0");
+			Cursor cursor = baseDatos.consultaSQLDirecta("select _id, nombres, apellidos, documento, telefono, direccion, correo, fechaNacimiento, estado from paciente where nombres LIKE '%"+dato+"%'");
 			//avisar a la actividad que se usara un cursor
 			startManagingCursor(cursor);
 	        
@@ -87,4 +67,5 @@ public class ListaPacientesInactivos extends ListActivity {
 			new Notificador().notificar(getApplicationContext(), e.toString(), Toast.LENGTH_LONG);
 		}
 	}
+	
 }
