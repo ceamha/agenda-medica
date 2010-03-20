@@ -7,6 +7,12 @@
 	<TextView android:id="@+id/info_nombre" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="normal" android:text="" />
+	<TextView android:id="@+id/label_apellido" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:textSize="14sp"
+		android:textStyle="bold" android:textColor="#ffcc00" android:text="Apellidos:" />
+	<TextView android:id="@+id/info_apellido" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:textSize="14sp"
+		android:textStyle="normal" android:text="" />
 	<TextView android:id="@+id/label_direccion" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="bold" android:textColor="#ffcc00" android:text="Direccion:" />
