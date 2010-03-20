@@ -18,6 +18,8 @@
 		<activity android:name="NuevaCita" android:label="Creación de nueva cita"></activity>
 		<activity android:name="ListaCitasDisponibles" android:label="Lista de citas disponibles"></activity>
 		<activity android:name="ListaPacientesInactivos" android:label="Lista de Pacientes Inactivos"></activity>
+		<activity android:name="ProgramarCitaPaciente" android:label="Programar cita"></activity>
+		<activity android:name="MotivoCita" android:label="Asignar el motivo de la cita"></activity>
 		<!--<activity android:name="Paciente" android:label="Información Paciente"></activity>-->
 	</application>
 	<uses-sdk android:minSdkVersion="7" />

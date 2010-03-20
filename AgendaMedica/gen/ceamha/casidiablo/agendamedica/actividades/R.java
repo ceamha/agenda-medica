@@ -30,11 +30,13 @@ public final class R {
         public static final int actualizar=0x7f05000a;
         public static final int apellido_paciente=0x7f05001e;
         public static final int apellidos_paciente=0x7f05000f;
+        public static final int asignar_motivo_cita=0x7f05001f;
         public static final int correo_paciente=0x7f050013;
         public static final int direccion_paciente=0x7f050012;
         public static final int documento_paciente=0x7f050010;
         public static final int fecha_cita=0x7f050018;
         public static final int fecha_nacimiento_paciente=0x7f050014;
+        public static final int guardar_cita=0x7f050020;
         public static final int guardar_paciente=0x7f050015;
         public static final int hora_cita=0x7f050017;
         public static final int hora_inicio_cita=0x7f05001b;
@@ -67,7 +69,9 @@ public final class R {
         public static final int lista_citas=0x7f030004;
         public static final int lista_citas_disponibles=0x7f030005;
         public static final int lista_pacientes=0x7f030006;
-        public static final int paciente=0x7f030007;
+        public static final int motivo_cita=0x7f030007;
+        public static final int paciente=0x7f030008;
+        public static final int programar_cita_paciente=0x7f030009;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
