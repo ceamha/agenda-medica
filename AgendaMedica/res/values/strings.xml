@@ -9,6 +9,7 @@
     <string name="m_estadisticas">Estadisticas</string>
     <string name="m_nuevo_paciente">Nuevo Paciente</string>
     <string name="m_actualizar_paciente">Actualizar Paciente</string>
+    <string name="m_inactivar_paciente">Inactivar Paciente</string>
     <string name="salir">Salir</string>
     
 <string name="m_buscar_paciente">Buscar</string>

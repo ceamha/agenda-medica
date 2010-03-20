@@ -14,6 +14,7 @@
 		<activity android:name="DespliegueEstadisticas"
 			android:label="Estadisticas"></activity>
 		<activity android:name="InformacionPaciente" android:label="Información Paciente"></activity>
+		<activity android:name="ActualizarPaciente" android:label="Actualizacion del Paciente"></activity>
 		<activity android:name="NuevaCita" android:label="Creación de nueva cita"></activity>
 		<activity android:name="ListaCitasDisponibles" android:label="Lista de citas disponibles"></activity>
 		<!--<activity android:name="Paciente" android:label="Información Paciente"></activity>-->

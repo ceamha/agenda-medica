@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
+	android:layout_width="wrap_content" android:layout_height="wrap_content" 
+	android:orientation="vertical">
 	<TextView android:id="@+id/label_nombre" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="bold" android:textColor="#ffcc00" android:text="Nombre:" />
-	<TextView android:id="@+id/info_nombre" android:layout_width="fill_parent"
+	<EditText android:id="@+id/info_nombre" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="normal" android:text="" />
 	<TextView android:id="@+id/label_direccion" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="bold" android:textColor="#ffcc00" android:text="Direccion:" />
-	<TextView android:id="@+id/info_direccion" android:layout_width="fill_parent"
+	<EditText android:id="@+id/info_direccion" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="normal" android:text="" />
 	<TextView android:id="@+id/label_telefono" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="bold" android:textColor="#ffcc00" android:text="Telefono:" />
-	<TextView android:id="@+id/info_telefono" android:layout_width="fill_parent"
+	<EditText android:id="@+id/info_telefono" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="normal" android:text="" />
 	<TextView android:id="@+id/label_correo" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="bold" android:textColor="#ffcc00" android:text="Correo:" />
-	<TextView android:id="@+id/info_correo" android:layout_width="fill_parent"
+	<EditText android:id="@+id/info_correo" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:textSize="14sp"
 		android:textStyle="normal" android:text="" />
+	<Button android:id="@+id/actualizar" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:textSize="14sp"
+		android:textStyle="normal" android:text="Actualizar" />
 </LinearLayout>
