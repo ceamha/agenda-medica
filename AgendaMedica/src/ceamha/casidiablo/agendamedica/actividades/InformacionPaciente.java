@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
@@ -12,10 +13,12 @@ import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 public class InformacionPaciente extends Activity{
 	
 	private TextView labelNombre;
+	private TextView labelApellido;
 	private TextView labelDireccion;
 	private TextView labelTelefono;
 	private TextView labelCorreo;
 	private TextView nombre;
+	private TextView apellido;
 	private TextView direccion;
 	private TextView telefono;
 	private TextView correo;
@@ -24,7 +27,7 @@ public class InformacionPaciente extends Activity{
 	private static final int M_ADD_CITA = Menu.FIRST + 2;
 	private AgendaDbAdaptador baseDatos;
 	private Paciente paciente;
-	
+	private Bundle extras; 
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +36,15 @@ public class InformacionPaciente extends Activity{
         baseDatos = new AgendaDbAdaptador(this);
         baseDatos.abrirBaseDatos();
         //obtener el ID del paciente que me lo pasa la anterior actividad
-        Bundle extras = getIntent().getExtras();
+        extras = getIntent().getExtras();    
         int idPaciente = 0;
 		if(extras !=null)
 			idPaciente = extras.getInt("idPaciente");
 		//Titulos
 		labelNombre = (TextView) findViewById(R.id.label_nombre);
 		labelNombre.setText(labelNombre.getText());
+		labelApellido = (TextView) findViewById(R.id.label_apellido);
+		labelApellido.setText(labelApellido.getText());
 		labelDireccion = (TextView) findViewById(R.id.label_direccion);
 		labelDireccion.setText(labelDireccion.getText());
 		labelTelefono = (TextView) findViewById(R.id.label_telefono);
@@ -51,6 +56,8 @@ public class InformacionPaciente extends Activity{
 		// Mostrar la informacion del Paciente
 		nombre = (TextView) findViewById(R.id.info_nombre);
 		nombre.setText(paciente.getNombres()+" "+paciente.getApellidos());
+		apellido = (TextView) findViewById(R.id.info_apellido);
+		apellido.setText(paciente.getApellidos());
 		direccion = (TextView) findViewById(R.id.info_direccion);
 		direccion.setText(paciente.getDireccion());
 		telefono = (TextView) findViewById(R.id.info_telefono);
@@ -65,8 +72,11 @@ public class InformacionPaciente extends Activity{
 		
 		menu.add(Menu.NONE, M_EDIT, 1, R.string.m_actualizar_paciente).setIcon(
 				R.drawable.refrescar);
-		menu.add(Menu.NONE, M_ACTIVE, 2, R.string.m_inactivar_paciente).setIcon(
-				R.drawable.inactivar);
+		if(paciente.isActivo()==true)
+			menu.add(Menu.NONE, M_ACTIVE, 2, R.string.m_inactivar_paciente).setIcon(R.drawable.inactivar);
+		else
+			menu.add(Menu.NONE, M_ACTIVE, 2, R.string.m_activar_paciente).setIcon(R.drawable.activar);
+		
 		menu.add(Menu.NONE, M_ADD_CITA, 0, R.string.m_citas).setIcon(
 				R.drawable.citas);
 		
@@ -88,8 +98,11 @@ public class InformacionPaciente extends Activity{
 			startActivityForResult(intent, CodigosPeticion.INSERTAR_CITA);
 			break;
 		case M_ACTIVE:
-			intent = new Intent(InformacionPaciente.this, NuevaCita.class);
+			paciente.setActivo(!paciente.isActivo());
+			baseDatos.almacenarPaciente(paciente);
+			intent = new Intent(InformacionPaciente.this, MenuPacientes.class);
 			startActivityForResult(intent, CodigosPeticion.INACTIVAR_PACIENTE);
+			
 			break;
 		}
 		return true;

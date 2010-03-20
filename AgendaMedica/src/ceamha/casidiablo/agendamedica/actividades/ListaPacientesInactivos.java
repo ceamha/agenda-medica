@@ -1,6 +1,7 @@
 package ceamha.casidiablo.agendamedica.actividades;
 
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
+import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,13 +15,12 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class MenuPacientes extends ListActivity {
+public class ListaPacientesInactivos extends ListActivity {
 
-	private static final int M_NUEVO = Menu.FIRST;
-	private static final int M_BUSCAR = Menu.FIRST + 1;
-	private static final int M_INACTIVOS = Menu.FIRST + 2;
+	private static final int M_BUSCAR = Menu.FIRST;
+	
 	private AgendaDbAdaptador baseDatos;
-
+	private Paciente paciente;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,6 +30,7 @@ public class MenuPacientes extends ListActivity {
 		ListView lv = getListView();
 		lv.setTextFilterEnabled(false);
 		lv.setOnItemClickListener(manejadorClickPaciente);
+		
 	}
 	
 	// Crear un manejador de eventos para la lista
@@ -37,7 +38,7 @@ public class MenuPacientes extends ListActivity {
 	    @SuppressWarnings("unchecked")
 		public void onItemClick(AdapterView parent, View v, int position, long id)
 	    {
-	        Intent intent = new Intent(MenuPacientes.this, InformacionPaciente.class);
+	        Intent intent = new Intent(ListaPacientesInactivos.this, InformacionPaciente.class);
 	        //le envio el id del paciente :)
 	        intent.putExtra("idPaciente", (int)id);
      	    startActivity(intent);
@@ -47,12 +48,8 @@ public class MenuPacientes extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE, M_NUEVO, 0, R.string.m_nuevo_paciente).setIcon(
-				R.drawable.nuevopaciente);
-		menu.add(Menu.NONE, M_BUSCAR, 1, R.string.m_buscar_paciente).setIcon(
+		menu.add(Menu.NONE, M_BUSCAR, 0, R.string.m_buscar_paciente).setIcon(
 				R.drawable.consultas);
-		menu.add(Menu.NONE, M_INACTIVOS, 1, R.string.m_inactivos_paciente).setIcon(
-				R.drawable.pacientes_inactivos);
 		return true;
 	}
 
@@ -60,17 +57,9 @@ public class MenuPacientes extends ListActivity {
 		super.onMenuItemSelected(featureId, item);
 		Intent intent;
 		switch (item.getItemId()) {
-		case M_NUEVO:
-			intent = new Intent(MenuPacientes.this, NuevoPaciente.class);
-			startActivityForResult(intent, CodigosPeticion.INSERTAR_PACIENTE);
-			break;
-		case M_INACTIVOS:
-			try{
-				intent = new Intent(MenuPacientes.this, ListaPacientesInactivos.class);
-				startActivityForResult(intent, CodigosPeticion.LISTA_PACIENTES_INACTIVOS);
-			}catch(Exception e){
-			new Notificador().notificar(this, e.toString(), 1);
-			}
+		case M_BUSCAR:
+			/*intent = new Intent(ListaPacientesInactivos.this, NuevoPaciente.class);
+			startActivityForResult(intent, CodigosPeticion.INSERTAR_PACIENTE);*/
 			break;
 		}
 		return true;
@@ -81,7 +70,7 @@ public class MenuPacientes extends ListActivity {
 	 */
 	private void generarListadoPacientes() {
 		try{
-			Cursor cursor = baseDatos.obtenerPacientes();
+			Cursor cursor = baseDatos.consultaSQLDirecta("select _id, nombres, apellidos, documento, telefono, direccion, correo, fechaNacimiento, estado from paciente where estado=0");
 			//avisar a la actividad que se usara un cursor
 			startManagingCursor(cursor);
 	        
