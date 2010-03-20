@@ -239,7 +239,7 @@ public class AgendaDbAdaptador implements Almacenador {
 		Cursor cursor = baseDatos.query("paciente", new String[] { "_id",
 				"nombres", "apellidos", "documento", "telefono",
 				"direccion", "correo", "fechaNacimiento", "estado"},
-				null, null, null, null, null);
+				"estado=1", null, null, null, null);
 		return cursor;
 	}
 

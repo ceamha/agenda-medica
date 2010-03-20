@@ -11,18 +11,20 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int citas=0x7f020000;
-        public static final int clientes=0x7f020001;
-        public static final int consultas=0x7f020002;
-        public static final int editar=0x7f020003;
-        public static final int estadisticas=0x7f020004;
-        public static final int exit2=0x7f020005;
-        public static final int horario=0x7f020006;
-        public static final int icon=0x7f020007;
-        public static final int inactivar=0x7f020008;
-        public static final int nuevopaciente=0x7f020009;
-        public static final int refrescar=0x7f02000a;
-        public static final int salir=0x7f02000b;
+        public static final int activar=0x7f020000;
+        public static final int citas=0x7f020001;
+        public static final int clientes=0x7f020002;
+        public static final int consultas=0x7f020003;
+        public static final int editar=0x7f020004;
+        public static final int estadisticas=0x7f020005;
+        public static final int exit2=0x7f020006;
+        public static final int horario=0x7f020007;
+        public static final int icon=0x7f020008;
+        public static final int inactivar=0x7f020009;
+        public static final int nuevopaciente=0x7f02000a;
+        public static final int pacientes_inactivos=0x7f02000b;
+        public static final int refrescar=0x7f02000c;
+        public static final int salir=0x7f02000d;
     }
     public static final class id {
         public static final int actualizar=0x7f05000a;
@@ -69,15 +71,17 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int m_activar_paciente=0x7f040009;
         public static final int m_actualizar_paciente=0x7f040007;
-        public static final int m_buscar_paciente=0x7f04000a;
+        public static final int m_buscar_paciente=0x7f04000c;
         public static final int m_citas=0x7f040002;
         public static final int m_consultas=0x7f040004;
         public static final int m_estadisticas=0x7f040005;
         public static final int m_horario=0x7f040003;
         public static final int m_inactivar_paciente=0x7f040008;
+        public static final int m_inactivos_paciente=0x7f04000a;
         public static final int m_nuevo_paciente=0x7f040006;
         public static final int m_pacientes=0x7f040001;
-        public static final int salir=0x7f040009;
+        public static final int salir=0x7f04000b;
     }
 }
