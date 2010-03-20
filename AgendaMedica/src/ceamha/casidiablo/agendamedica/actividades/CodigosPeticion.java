@@ -7,4 +7,5 @@ public interface CodigosPeticion {
 	public static final int ACTUALIZAR_PACIENTE = 8;
 	public static final int INACTIVAR_PACIENTE = 9; 
 	public static final int LISTA_PACIENTES_INACTIVOS = 10;
+	public static final int BUSCAR_PACIENTE = 11; 
 }
