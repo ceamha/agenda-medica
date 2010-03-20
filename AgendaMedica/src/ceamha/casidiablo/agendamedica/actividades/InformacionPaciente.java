@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 

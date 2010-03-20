@@ -2,14 +2,15 @@ package ceamha.casidiablo.agendamedica.actividades;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Vector;
 
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
@@ -42,6 +43,7 @@ public class ListaCitasDisponibles extends ListActivity {
 
 		try {
 			ArrayList<Map<String, String>> arl = new ArrayList<Map<String, String>>();
+			Vector<Map<String, String>> vector = new Vector<Map<String, String>>();
 			cursor.moveToFirst();
 			if (cursor.isFirst()) {
 				//recorrer el cursor
@@ -56,9 +58,39 @@ public class ListaCitasDisponibles extends ListActivity {
 					HashMap<String, String> mapa = new HashMap<String, String>();
 					mapa.put("horaProgramadaInicio", horaProgramadaInicio + " - "+ horaProgramadaFin+"false");
 					mapa.put("nombresPaciente", nombresPaciente);
-					arl.add(mapa);
+					vector.add(mapa);
 				} while (cursor.moveToNext());
 			}
+			
+			/**
+			 * Ordenar el ArrayString y poner las vacantes
+			 */
+			String formatoHoraInicio = "", formatoHoraFin = "";
+			HashMap<String, String> mapa = new HashMap<String, String>();
+			int cont = 1;
+			for(float inicio = 8.5f, fin = 16f, temp = 0; inicio <= fin; inicio += 0.5f){
+				//crear formato hora
+				formatoHoraInicio = ((int)inicio)+":"+( (inicio - ((int)inicio)) == 0.5 ? "30" : "00")+":00";
+				temp = inicio + 0.5f;
+				formatoHoraFin = ((int)temp)+":"+( (temp - ((int)temp)) == 0.5 ? "30" : "00")+":00";
+				Iterator<Map<String, String>> itr = vector.iterator();
+				boolean repetido = false;
+				while(itr.hasNext()){
+					mapa = (HashMap<String, String>) itr.next();
+					if(mapa.get("horaProgramadaInicio").equals(formatoHoraInicio + " - "+ formatoHoraFin +"false")){
+						repetido = true;
+						break;
+					}
+				}
+				if(!repetido){
+					mapa = new HashMap<String, String>();
+					mapa.put("horaProgramadaInicio", formatoHoraInicio + " - "+ formatoHoraFin +"true");
+					mapa.put("nombresPaciente", "Vacante");
+				}
+				arl.add(mapa);
+				cont ++;
+			}
+			new Notificador().notificar(this, formatoHoraInicio+ " -- "+formatoHoraFin, 1);
 			
 			SimpleAdapter ad = new SimpleAdapter(this, arl, R.layout.lista_citas_disponibles, desde, para);
 			SimpleAdapter.ViewBinder pp = new SimpleAdapter.ViewBinder(){
@@ -66,14 +98,19 @@ public class ListaCitasDisponibles extends ListActivity {
 				public boolean setViewValue(View view, Object data,
 						String textRepresentation) {
 					if(view instanceof TextView){
-						TextView tt = (TextView) view;
+						try{TextView tt = (TextView) view;
 						tt.setText("");
 						//si es el que muestra la fecha
 						if(tt.getId() == R.id.hora_inicio_cita && textRepresentation.endsWith("false")){
 							tt.setTextColor(Color.RED);
 							textRepresentation = textRepresentation.substring(0, textRepresentation.indexOf("false"));
 						}
-						tt.setText(textRepresentation);
+						if(tt.getId() == R.id.hora_inicio_cita && textRepresentation.endsWith("true")){
+							tt.setTextColor(Color.rgb(0, 87, 2));
+							textRepresentation = textRepresentation.substring(0, textRepresentation.indexOf("true"));
+						}
+						tt.setText(textRepresentation);}
+						catch(Exception e){new Notificador().notificar(view.getContext(), e.toString(), 1);}
 						return true;
 					}
 					else return false;

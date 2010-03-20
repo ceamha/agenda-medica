@@ -114,7 +114,7 @@ public class AgendaDbAdaptador implements Almacenador {
 					"'', 5, '', '', 1);");
 			db.execSQL("INSERT INTO cita (motivo, fecha, horaProgramadaInicio, horaProgramadaFin, " +
 					"observaciones, idPaciente, horaInicio, horaFin, estado)" +
-					"VALUES ('Heridas de guerra', '3-18-2010', '11:30:00', '12:30:00'," +
+					"VALUES ('Heridas de guerra', '3-18-2010', '11:30:00', '12:00:00'," +
 					"'', 8, '', '', 1);");
 		}
 
