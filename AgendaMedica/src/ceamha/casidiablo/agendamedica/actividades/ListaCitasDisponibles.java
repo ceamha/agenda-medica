@@ -4,20 +4,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.Vector;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 
 public class ListaCitasDisponibles extends ListActivity {
 	private AgendaDbAdaptador baseDatos;
 	protected TextView textoHora;
+	private ArrayList<Map<String, String>> arl;
+	private String fecha;
+	
+	// Crear un manejador de eventos para la lista
+	private OnItemClickListener manejadorClickAddCita = new OnItemClickListener() {
+		@SuppressWarnings("unchecked")
+		public void onItemClick(AdapterView parent, View v, int position, long id) {
+			HashMap<String, String> mapa = (HashMap<String, String>) arl.get(position);
+			String horaProgramadaInicioFin = mapa.get("horaProgramadaInicio");
+			String horaProgramadaInicio = "", horaProgramadaFin = "";
+			//ignorar las que ya están asignadas
+			if(!horaProgramadaInicioFin.endsWith("false")){
+				horaProgramadaInicioFin = horaProgramadaInicioFin.substring(0, horaProgramadaInicioFin.indexOf("true"));
+				StringTokenizer token = new StringTokenizer(horaProgramadaInicioFin, " - ");
+				if(token.hasMoreTokens()){
+					horaProgramadaInicio = token.nextToken();
+					horaProgramadaFin = token.nextToken();
+				}
+				Intent intent = new Intent(ListaCitasDisponibles.this, ProgramarCitaPaciente.class);
+				intent.putExtra("fecha", fecha);
+				intent.putExtra("horaProgramadaInicio", horaProgramadaInicio);
+				intent.putExtra("horaProgramadaFin", horaProgramadaFin);
+				startActivityForResult(intent, CodigosPeticion.SELECCIONAR_PACIENTE_CITA);
+			}
+		}
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,14 +59,14 @@ public class ListaCitasDisponibles extends ListActivity {
 		baseDatos = new AgendaDbAdaptador(this);
 		baseDatos.abrirBaseDatos();
 		citasDisponibles();
-		// ListView lv = getListView();
-		// lv.setTextFilterEnabled(false);
-		// lv.setOnItemClickListener(manejadorClickCita);
+		ListView lv = getListView();
+		lv.setTextFilterEnabled(false);
+		lv.setOnItemClickListener(manejadorClickAddCita);
 	}
 
 	private void citasDisponibles() {
 		Bundle extras = getIntent().getExtras();
-		String fecha = "";
+		fecha = "";
 		if (extras != null)
 			fecha = extras.getString("fecha");
 		Cursor cursor = baseDatos.obtenerCitasDisponibles(fecha);
@@ -42,7 +75,7 @@ public class ListaCitasDisponibles extends ListActivity {
 		int[] para = new int[] { R.id.hora_inicio_cita, R.id.nombre_paciente, R.id.vacante};
 
 		try {
-			ArrayList<Map<String, String>> arl = new ArrayList<Map<String, String>>();
+			arl = new ArrayList<Map<String, String>>();
 			Vector<Map<String, String>> vector = new Vector<Map<String, String>>();
 			cursor.moveToFirst();
 			if (cursor.isFirst()) {
@@ -67,7 +100,6 @@ public class ListaCitasDisponibles extends ListActivity {
 			 */
 			String formatoHoraInicio = "", formatoHoraFin = "";
 			HashMap<String, String> mapa = new HashMap<String, String>();
-			int cont = 1;
 			for(float inicio = 8.5f, fin = 16f, temp = 0; inicio <= fin; inicio += 0.5f){
 				//crear formato hora
 				formatoHoraInicio = ((int)inicio)+":"+( (inicio - ((int)inicio)) == 0.5 ? "30" : "00")+":00";
@@ -88,9 +120,7 @@ public class ListaCitasDisponibles extends ListActivity {
 					mapa.put("nombresPaciente", "Vacante");
 				}
 				arl.add(mapa);
-				cont ++;
 			}
-			new Notificador().notificar(this, formatoHoraInicio+ " -- "+formatoHoraFin, 1);
 			
 			SimpleAdapter ad = new SimpleAdapter(this, arl, R.layout.lista_citas_disponibles, desde, para);
 			SimpleAdapter.ViewBinder pp = new SimpleAdapter.ViewBinder(){
@@ -121,5 +151,11 @@ public class ListaCitasDisponibles extends ListActivity {
 		} catch (Exception e) {
 			new Notificador().notificar(this, "Error " + e.toString(), 1);
 		}
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		super.onActivityResult(requestCode, resultCode, data);
+		citasDisponibles();
 	}
 }

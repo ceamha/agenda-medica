@@ -81,8 +81,7 @@ public class NuevaCita extends Activity {
 		mostrarFecha.setText(new StringBuilder()
 			// Mes es en base 0, así que se debe añadir 1
 					.append(mes + 1).append("-").append(dia).append("-").append(
-							anio).append(" "));
-		mostrarFecha.setText("3-18-2010");
+							anio));
 	}
 
 	// el callback que se recibe cuando el usuario escoje una fecha

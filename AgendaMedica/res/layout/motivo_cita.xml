@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+  <TextView android:text="¿Cual es el motivo de la cita?"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"/>
+  <EditText
+  android:id="@+id/asignar_motivo_cita"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:minLines="6"
+  />
+  <Button android:id="@+id/guardar_cita"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="Guardar cita"/>
+</LinearLayout>
