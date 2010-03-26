@@ -57,10 +57,6 @@ public class AgendaMedica extends ListActivity {
 				R.drawable.citas);
 		menu.add(Menu.NONE, M_PACIENTES, 1, R.string.m_pacientes).setIcon(
 				R.drawable.clientes);
-		/*menu.add(Menu.NONE, M_HORARIO, 2, R.string.m_horario).setIcon(
-				R.drawable.horario);
-		menu.add(Menu.NONE, M_CONSULTAS, 3, R.string.m_consultas).setIcon(
-				R.drawable.consultas);*/
 		menu.add(Menu.NONE, M_ESTADISTICAS, 4, R.string.m_estadisticas)
 				.setIcon(R.drawable.estadisticas);
 		menu.add(Menu.NONE, SALIR, 5, R.string.salir).setIcon(R.drawable.salir);

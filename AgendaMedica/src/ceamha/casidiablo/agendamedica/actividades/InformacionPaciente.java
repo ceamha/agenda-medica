@@ -55,13 +55,12 @@ public class InformacionPaciente extends Activity{
 		
 		menu.add(Menu.NONE, M_EDIT, 1, R.string.m_actualizar_paciente).setIcon(
 				R.drawable.refrescar);
-		if(paciente.isActivo()==true)
+		if(paciente.isActivo()==true){
 			menu.add(Menu.NONE, M_ACTIVE, 2, R.string.m_inactivar_paciente).setIcon(R.drawable.inactivar);
-		else
+			menu.add(Menu.NONE, M_ADD_CITA, 0, R.string.m_citas).setIcon(
+					R.drawable.citas);
+		}else
 			menu.add(Menu.NONE, M_ACTIVE, 2, R.string.m_activar_paciente).setIcon(R.drawable.activar);
-		
-		menu.add(Menu.NONE, M_ADD_CITA, 0, R.string.m_citas).setIcon(
-				R.drawable.citas);
 		
 		return true;
 	}
