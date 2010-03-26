@@ -17,6 +17,6 @@ public class DespliegueEstadisticas extends Activity {
 	 */
 	public void generarImagen(){
 		ImageView img = (ImageView)findViewById(R.id.imagen);
-		AdministradorImagenes.fetchDrawableOnThread("http://chart.apis.google.com/chart?chs=460x230&chd=t:62&cht=p&chl=Google", img);
+		AdministradorImagenes.fetchDrawableOnThread("http://10.10.2.221/chart.png", img);
 	}
 }

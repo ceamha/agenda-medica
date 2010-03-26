@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="ceamha.casidiablo.agendamedica.actividades"
-	android:versionCode="1" android:versionName="1.0">
-	<application android:icon="@drawable/icon" android:label="@string/app_name">
-		<activity android:name=".AgendaMedica" android:label="@string/app_name">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-		<activity android:name="MenuPacientes" android:label="Menu de Pacientes"></activity>
+      android:versionCode="1"
+      android:versionName="1.2" package="ceamha.casidiablo.agendamedica.actividades">
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:label="@string/app_name" android:name="ceamha.casidiablo.agendamedica.actividades.AgendaMedica">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="MenuPacientes" android:label="Menu de Pacientes"></activity>
 		<activity android:name="NuevoPaciente" android:label="Creación de nuevo paciente"></activity>
-		<activity android:name="DespliegueEstadisticas"
-			android:label="Estadisticas"></activity>
+		<activity android:name="DespliegueEstadisticas" android:label="Estadisticas"></activity>
 		<activity android:name="InformacionPaciente" android:label="Información Paciente"></activity>
 		<activity android:name="ActualizarPaciente" android:label="Actualizacion del Paciente"></activity>
 		<activity android:name="NuevaCita" android:label="Creación de nueva cita"></activity>
@@ -22,8 +21,7 @@
 		<activity android:name="MotivoCita" android:label="Asignar el motivo de la cita"></activity>
 		<activity android:name="BuscarPacientes" android:label="Buscando Pacientes por Nombre"></activity>
 		<activity android:name="ListaPacientesBuscados" android:label="Lista de Pacientes Buscados"></activity>
-		<!--<activity android:name="Paciente" android:label="Información Paciente"></activity>-->
-	</application>
-	<uses-sdk android:minSdkVersion="7" />
-	<uses-permission android:name="android.permission.INTERNET" />
+		<activity android:name="MostrarDetalleCita" android:label="Detalle de la cita"></activity>
+    </application>
+    <uses-sdk android:minSdkVersion="4" />
 </manifest> 

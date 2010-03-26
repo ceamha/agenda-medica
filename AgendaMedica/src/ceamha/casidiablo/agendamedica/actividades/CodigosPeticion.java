@@ -9,5 +9,6 @@ public interface CodigosPeticion {
 	public static final int LISTA_PACIENTES_INACTIVOS = 10;
 	public static final int SELECCIONAR_PACIENTE_CITA = 11;
 	public static final int GUARDAR_CITA = 12;
-	public static final int BUSCAR_PACIENTE = 11; 
+	public static final int BUSCAR_PACIENTE = 13;
+	public static final int MOSTRAR_DETALLES_CITA = 14; 
 }

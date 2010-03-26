@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:orientation="vertical">
+	<LinearLayout android:orientation="horizontal"
+		android:layout_height="wrap_content" android:layout_width="fill_parent">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:textSize="14sp"
+			android:textStyle="bold" android:textColor="#ffcc00" android:text="Fecha: " />
+		<TextView android:id="@+id/fecha_cita" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:textSize="14sp"
+			android:textStyle="normal" />
+	</LinearLayout>
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_height="wrap_content" android:layout_width="fill_parent">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:textSize="14sp"
+			android:textStyle="bold" android:textColor="#ffcc00" android:text="Motivo de la cita: " />
+		<TextView android:id="@+id/motivo_de_cita"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:textSize="14sp" android:textStyle="normal" />
+	</LinearLayout>
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_height="wrap_content" android:layout_width="fill_parent">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:textSize="14sp"
+			android:textStyle="bold" android:textColor="#ffcc00" android:text="Hora programación inicio cita: " />
+		<TextView android:id="@+id/hora_programada_inicio_cita"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:textSize="14sp" android:textStyle="normal" />
+	</LinearLayout>
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_height="wrap_content" android:layout_width="fill_parent">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:textSize="14sp"
+			android:textStyle="bold" android:textColor="#ffcc00" android:text="Hora programación fin cita: " />
+		<TextView android:id="@+id/hora_programada_fin_cita"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:textSize="14sp" android:textStyle="normal" />
+	</LinearLayout>
+
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:textSize="20sp"
+		android:textStyle="bold" android:textColor="#ffcc00" android:text="Datos del paciente"
+		android:layout_marginTop="10px" android:layout_marginBottom="10px"/>
+
+	<TextView android:id="@+id/label_nombre" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:textSize="14sp"
+		android:textStyle="bold" android:textColor="#ffcc00" android:text="Nombre:" />
+	<TextView android:id="@+id/info_nombre" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:textSize="14sp"
+		android:textStyle="normal" android:text="" />
+	<TextView android:id="@+id/label_apellido"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:textSize="14sp" android:textStyle="bold" android:textColor="#ffcc00"
+		android:text="Apellidos:" />
+	<TextView android:id="@+id/info_apellido"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:textSize="14sp" android:textStyle="normal" android:text="" />
+	<TextView android:id="@+id/label_direccion"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:textSize="14sp" android:textStyle="bold" android:textColor="#ffcc00"
+		android:text="Direccion:" />
+	<TextView android:id="@+id/info_direccion"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:textSize="14sp" android:textStyle="normal" android:text="" />
+	<TextView android:id="@+id/label_telefono"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:textSize="14sp" android:textStyle="bold" android:textColor="#ffcc00"
+		android:text="Telefono:" />
+	<TextView android:id="@+id/info_telefono"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:textSize="14sp" android:textStyle="normal" android:text="" />
+	<TextView android:id="@+id/label_correo" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:textSize="14sp"
+		android:textStyle="bold" android:textColor="#ffcc00" android:text="Correo:" />
+	<TextView android:id="@+id/info_correo" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:textSize="14sp"
+		android:textStyle="normal" android:text="" />
+</LinearLayout>

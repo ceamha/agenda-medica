@@ -29,10 +29,12 @@ public class AgendaMedica extends ListActivity {
 		@SuppressWarnings("unchecked")
 		public void onItemClick(AdapterView parent, View v, int position,
 				long id) {
-			// Display a messagebox.
-			Toast.makeText(v.getContext(), "Falta esta parte :(", Toast.LENGTH_LONG).show();
-			//Toast.makeText(v.getContext(), position + "y ahora? " + id,
-			//		Toast.LENGTH_SHORT).show();
+			try{
+			Intent intent = new Intent(AgendaMedica.this, MostrarDetalleCita.class);
+			intent.putExtra("idCita", (int)id);
+			startActivityForResult(intent, CodigosPeticion.MOSTRAR_DETALLES_CITA);
+			}
+			catch(Exception e){new Notificador().notificar(v.getContext(), "sigh", 1);}
 		}
 	};
 
@@ -55,10 +57,10 @@ public class AgendaMedica extends ListActivity {
 				R.drawable.citas);
 		menu.add(Menu.NONE, M_PACIENTES, 1, R.string.m_pacientes).setIcon(
 				R.drawable.clientes);
-		menu.add(Menu.NONE, M_HORARIO, 2, R.string.m_horario).setIcon(
+		/*menu.add(Menu.NONE, M_HORARIO, 2, R.string.m_horario).setIcon(
 				R.drawable.horario);
 		menu.add(Menu.NONE, M_CONSULTAS, 3, R.string.m_consultas).setIcon(
-				R.drawable.consultas);
+				R.drawable.consultas);*/
 		menu.add(Menu.NONE, M_ESTADISTICAS, 4, R.string.m_estadisticas)
 				.setIcon(R.drawable.estadisticas);
 		menu.add(Menu.NONE, SALIR, 5, R.string.salir).setIcon(R.drawable.salir);
@@ -79,10 +81,8 @@ public class AgendaMedica extends ListActivity {
 			startActivityForResult(intent, CodigosPeticion.INSERTAR_CITA);
 			break;
 		case M_HORARIO:
-			// f_euros_a_pesetas();
 			break;
 		case M_CONSULTAS:
-			// f_pesetas_a_euros();
 			break;
 		case M_ESTADISTICAS:
 			try {

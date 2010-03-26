@@ -1,12 +1,12 @@
 package ceamha.casidiablo.agendamedica.actividades;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import ceamha.casidiablo.agendamedica.almacenamiento.AgendaDbAdaptador;
 import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 
@@ -78,16 +78,9 @@ public class ActualizarPaciente extends Activity{
             		paciente.setTelefono(telefono.getText().toString());
             	if(correo.getText().toString()!=paciente.getCorreo())
             		paciente.setCorreo(correo.getText().toString());
-            	
                 baseDatos.almacenarPaciente(paciente);
-                Intent intent = new Intent(ActualizarPaciente.this, InformacionPaciente.class);
-    			intent.putExtra("idPaciente", paciente.get_id());
-    			startActivityForResult(intent, CodigosPeticion.ACTUALIZAR_PACIENTE);
-                nombre.setText(paciente.getNombres());
-                apellido.setText(paciente.getApellidos());
-                direccion.setText(paciente.getDireccion());
-                telefono.setText(paciente.getTelefono());
-                correo.setText(paciente.getCorreo());
+                new Notificador().notificar(view.getContext(), "Paciente actualizado correctamente", Toast.LENGTH_SHORT);
+                finish();
             }
         });
 	}

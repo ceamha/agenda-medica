@@ -11,11 +11,6 @@ import ceamha.casidiablo.agendamedica.esqueleto.Paciente;
 
 public class InformacionPaciente extends Activity{
 	
-	private TextView labelNombre;
-	private TextView labelApellido;
-	private TextView labelDireccion;
-	private TextView labelTelefono;
-	private TextView labelCorreo;
 	private TextView nombre;
 	private TextView apellido;
 	private TextView direccion;
@@ -39,17 +34,6 @@ public class InformacionPaciente extends Activity{
         int idPaciente = 0;
 		if(extras !=null)
 			idPaciente = extras.getInt("idPaciente");
-		//Titulos
-		labelNombre = (TextView) findViewById(R.id.label_nombre);
-		labelNombre.setText(labelNombre.getText());
-		labelApellido = (TextView) findViewById(R.id.label_apellido);
-		labelApellido.setText(labelApellido.getText());
-		labelDireccion = (TextView) findViewById(R.id.label_direccion);
-		labelDireccion.setText(labelDireccion.getText());
-		labelTelefono = (TextView) findViewById(R.id.label_telefono);
-		labelTelefono.setText(labelTelefono.getText());
-		labelCorreo = (TextView) findViewById(R.id.label_correo);
-		labelCorreo.setText(labelCorreo.getText());
         //obtener el paciente
 		paciente = baseDatos.obtenerPaciente(idPaciente);
 		// Mostrar la informacion del Paciente
@@ -99,9 +83,7 @@ public class InformacionPaciente extends Activity{
 		case M_ACTIVE:
 			paciente.setActivo(!paciente.isActivo());
 			baseDatos.almacenarPaciente(paciente);
-			intent = new Intent(InformacionPaciente.this, MenuPacientes.class);
-			startActivityForResult(intent, CodigosPeticion.INACTIVAR_PACIENTE);
-			
+			finish();
 			break;
 		}
 		return true;

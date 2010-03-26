@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Agenda Medica</string>
+	<string name="app_name">Agenda Médica</string>
     
     <string name="m_pacientes">Pacientes</string>
     <string name="m_citas">Añadir cita</string>
